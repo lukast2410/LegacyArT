@@ -3,3 +3,23 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+.small-scroll{
+  overflow: overlay;
+}
+
+.small-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.small-scroll::-webkit-scrollbar-track {
+  position: absolute;
+  margin: 1.75rem 0;
+  background: transparent;
+}
+
+.small-scroll::-webkit-scrollbar-thumb {
+  position: absolute;
+  background-color: #059669;
+  border-radius: 20px;
+}
