@@ -8,11 +8,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        emerald: colors.emerald
+        emerald: colors.emerald,
+        slate: colors.slate,
       },
       fontSize: {
-        '4.5xl': '2.75rem'
-      }
+        '4.5xl': '2.75rem',
+      },
+      width: {
+        '104' : '26rem',
+        '3/10' : '30%',
+      },
+      minWidth: {
+        '104' : '26rem',
+      },
     }
   },
   variants: {},

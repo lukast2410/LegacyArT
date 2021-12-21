@@ -2,17 +2,18 @@
 
 @section('content')
     <main class="w-screen h-screen flex py-16 items-center justify-center">
-        <div class="sm:w-5/6 sm:mx-auto h-full flex justify-between">
-            <div class="flex flex-col justify-between w-3/5">
-                <div class="block">
+        <div class="sm:w-5/6 sm:mx-auto h-full flex justify-between items-center">
+            <div class="flex flex-col justify-between w-3/5 h-full">
+                <a href="{{ route('home') }}" class="block">
                     <img class="h-10 w-fit" src="{{ asset('images/logo_long.png') }}" alt="Logo LegacyArT">
-                </div>
-                <h1 class="text-4.5xl leading-tight font-medium pb-4">#1 Discover, Collect, and Sell Extraordinary NFTs.</h1>
+                </a>
+                <h1 class="text-4.5xl 2xl:text-6xl leading-tight font-medium pb-4">#1 Discover, Collect, and Sell
+                    Extraordinary NFTs.</h1>
                 <div class="block w-full h-3/5">
                     <img class="h-full" src="{{ asset('images/art.png') }}" alt="Art">
                 </div>
             </div>
-            <div class="bg-white rounded-3xl w-1/3 overflow-hidden relative">
+            <div class="relative bg-white rounded-3xl w-3/10 min-w-104 overflow-x-hidden overflow-y-auto h-min max-h-full relative small-scroll">
                 <div class="bg-emerald-400 h-4 w-full"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                     <path fill="#34d399" fill-opacity="1"
@@ -26,7 +27,7 @@
                         <a class="py-3 pr-5 pl-3" href="{{ route('register') }}">{{ __('Register') }}</a>
                     @endif
                 </div>
-                <form class="w-full mt-12 px-6 space-y-6 sm:px-8" method="POST" action="{{ route('login') }}">
+                <form class="w-full mt-10 px-6 space-y-4 sm:px-8" method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="flex flex-wrap">
@@ -35,13 +36,13 @@
                         </label>
 
                         <input id="email" type="email"
-                            class="form-input w-full @error('email') border-red-500 @enderror  focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400" name="email"
-                            value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            class="form-input w-full @error('email') border-red-500 @enderror  focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
+                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                         @error('email')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
+                            <p class="text-red-500 text-xs italic mt-4">
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 
@@ -51,132 +52,53 @@
                         </label>
 
                         <input id="password" type="password"
-                            class="form-input w-full @error('password') border-red-500 @enderror focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400" name="password"
-                            required>
+                            class="form-input w-full @error('password') border-red-500 @enderror focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
+                            name="password" required>
 
                         @error('password')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
+                            <p class="text-red-500 text-xs italic mt-4">
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 
                     <div class="flex items-center">
                         <label class="inline-flex items-center text-sm text-gray-700" for="remember">
-                            <input type="checkbox" name="remember" id="remember" class="form-checkbox rounded focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400 text-emerald-400"
+                            <input type="checkbox" name="remember" id="remember"
+                                class="form-checkbox rounded focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400 text-emerald-400 p-2"
                                 {{ old('remember') ? 'checked' : '' }}>
                             <span class="ml-2">{{ __('Remember Me') }}</span>
                         </label>
 
                         @if (Route::has('password.request'))
-                        <a class="text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline hover:underline ml-auto"
-                            href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
+                            <a class="text-sm text-green-400 hover:text-emerald-600 whitespace-no-wrap no-underline hover:underline ml-auto"
+                                href="{{ route('password.request') }}">
+                                {{ __('Forgot Password?') }}
+                            </a>
                         @endif
-
-                        <a class="text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline hover:underline ml-auto"
-                            href="{{ route('google.login') }}">
-                            {{ __('Login with Google') }}
-                        </a>
                     </div>
 
                     <div class="flex flex-wrap">
                         <button type="submit"
-                        class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-white bg-emerald-400 hover:bg-emerald-500">
-                            {{ __('Login') }}
+                            class="w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-white bg-emerald-400 hover:bg-emerald-500">
+                            {{ __('Let\'s Go!') }}
                         </button>
+                    </div>
 
-                        @if (Route::has('register'))
-                        <p class="w-full text-xs text-center text-gray-700 my-6 sm:text-sm sm:my-8">
-                            {{ __("Don't have an account?") }}
-                            <a class="text-blue-500 hover:text-blue-700 no-underline hover:underline" href="{{ route('register') }}">
-                                {{ __('Register') }}
+                    <div class="flex flex-wrap">
+                        @if (Route::has('google.login'))
+                            <a href="{{ route('google.login') }}"
+                                class="flex items-center justify-center w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-slate-400 bg-white border-2 border-slate-100 hover:bg-slate-100">
+                                <x-grommet-google class="h-5 w-5 mr-2" />
+                                {{ __('Continue with Google') }}
                             </a>
-                        </p>
                         @endif
                     </div>
                 </form>
+                <footer class="bg-gray-100 p-3 text-center text-xs font-medium text-gray-500 mt-8">
+                    By clicking the button above, you agree to our <span class="text-green-400">terms</span> and <span class="text-green-400">conditions</span>
+                </footer>
             </div>
         </div>
-        {{-- <div class="flex">
-        <div class="w-full">
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
-
-                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
-                    @csrf
-
-                    <div class="flex flex-wrap">
-                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('EMail Address') }}:
-                        </label>
-
-                        <input id="email" type="email"
-                            class="form-input w-full @error('email') border-red-500 @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                        @error('email')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <label for="password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Password') }}:
-                        </label>
-
-                        <input id="password" type="password"
-                            class="form-input w-full @error('password') border-red-500 @enderror" name="password"
-                            required>
-
-                        @error('password')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-
-                    <div class="flex items-center">
-                        <label class="inline-flex items-center text-sm text-gray-700" for="remember">
-                            <input type="checkbox" name="remember" id="remember" class="form-checkbox"
-                                {{ old('remember') ? 'checked' : '' }}>
-                            <span class="ml-2">{{ __('Remember Me') }}</span>
-                        </label>
-
-                        @if (Route::has('password.request'))
-                        <a class="text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline hover:underline ml-auto"
-                            href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
-                        @endif
-
-                        <a class="text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline hover:underline ml-auto"
-                            href="{{ route('google.login') }}">
-                            {{ __('Login with Google') }}
-                        </a>
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <button type="submit"
-                        class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4">
-                            {{ __('Login') }}
-                        </button>
-
-                        @if (Route::has('register'))
-                        <p class="w-full text-xs text-center text-gray-700 my-6 sm:text-sm sm:my-8">
-                            {{ __("Don't have an account?") }}
-                            <a class="text-blue-500 hover:text-blue-700 no-underline hover:underline" href="{{ route('register') }}">
-                                {{ __('Register') }}
-                            </a>
-                        </p>
-                        @endif
-                    </div>
-                </form>
-
-            </section>
-        </div>
-    </div> --}}
     </main>
 @endsection
