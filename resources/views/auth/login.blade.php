@@ -10,7 +10,7 @@
                 <h1 class="hidden lg:block text-4.5xl xl:text-4.75xl 2xl:text-5xl leading-tight 2xl:leading-snug font-bold pt-6 xl:pt-0 pb-8 xl:pb-6">#1 Discover, Collect, and Sell
                     Extraordinary NFTs.</h1>
                 <div class="block w-full h-auto 2xl:h-3/5">
-                    <img class="h-full w-full" src="{{ asset('images/art.png') }}" alt="Art">
+                    <img class="h-auto w-full" src="{{ asset('images/art.png') }}" alt="Art">
                 </div>
             </div>
             <div class="relative w-full h-full sm:absolute sm:left-1/2 sm:-translate-x-1/2 lg:left-0 lg:static lg:translate-x-0 bg-white sm:rounded-3xl sm:w-96 lg:w-3/10 sm:min-w-96 overflow-x-hidden overflow-y-auto sm:h-min max-h-full small-scroll shadow-lg">
@@ -77,7 +77,7 @@
                         </label>
 
                         @if (Route::has('password.request'))
-                            <a class="text-sm text-green-400 hover:text-emerald-600 whitespace-no-wrap no-underline hover:underline ml-auto"
+                            <a class="text-sm text-green-400 hover:text-emerald-600 whitespace-no-wrap no-underline hover:underline ml-auto font-medium"
                                 href="{{ route('password.request') }}">
                                 {{ __('Forgot Password?') }}
                             </a>
@@ -105,7 +105,7 @@
                     <div class="flex flex-wrap">
                         @if (Route::has('google.login'))
                             <a href="{{ route('google.login') }}"
-                                class="flex items-center justify-center w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-slate-400 bg-white border-2 border-slate-100 hover:bg-slate-100">
+                                class="flex items-center justify-center w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-slate-400 bg-white border-2 border-slate-200 hover:bg-slate-200">
                                 <x-grommet-google class="h-5 w-5 mr-2" />
                                 {{ __('Continue with Google') }}
                             </a>

@@ -17,16 +17,16 @@ class GoogleController extends Controller
     public function callback(){
         try {
             $user = Socialite::driver('google')->user();
-            
+
             $findUser = User::where('email', $user->getEmail())->first();
             
-
             if($findUser){
                 Auth::login($findUser);
                 return redirect()->intended('home');
             }else{
                 $newUser = User::create([
                     'name' => $user->getName(),
+                    'nickname' => substr($user->getEmail(), 0, strpos($user->getEmail(), "@")),
                     'email' => $user->getEmail(),
                     'password' => bcrypt('lalalalala'),
                     'profile_image' => $user->getAvatar(),

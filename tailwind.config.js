@@ -10,6 +10,8 @@ module.exports = {
       colors: {
         emerald: colors.emerald,
         slate: colors.slate,
+        'black-trans': '#2e2e2e45',
+        'white-trans': '#91919140',
       },
       fontSize: {
         '4.5xl': '2.5rem',

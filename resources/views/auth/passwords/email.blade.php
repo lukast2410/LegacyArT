@@ -1,55 +1,70 @@
-@extends('layouts.app')
+@extends('layouts.sign')
 
 @section('content')
-<main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
-    <div class="flex">
-        <div class="w-full">
-
-            @if (session('status'))
-            <div class="text-sm text-green-700 bg-green-100 px-5 py-6 sm:rounded sm:border sm:border-green-400 sm:mb-6"
-                role="alert">
-                {{ session('status') }}
+<main class="w-screen h-screen flex sm:py-16 items-center justify-center">
+    <div class="w-screen sm:w-11/12 lg:w-5/6 sm:mx-auto h-full flex justify-between items-center relative">
+        <div class="hidden sm:flex flex-col justify-end lg:justify-center xl:justify-between w-full lg:w-3/5 h-full lg:mr-8">
+            <a href="{{ route('home') }}" class="hidden lg:block">
+                <img class="h-10 w-fit" src="{{ asset('images/logo_long.png') }}" alt="Logo LegacyArT">
+            </a>
+            <h1 class="hidden lg:block text-4.5xl xl:text-4.75xl 2xl:text-5xl leading-tight 2xl:leading-snug font-bold pt-6 xl:pt-0 pb-8 xl:pb-6">#1 Discover, Collect, and Sell
+                Extraordinary NFTs.</h1>
+            <div class="block w-full h-auto 2xl:h-3/5">
+                <img class="h-auto w-full" src="{{ asset('images/art.png') }}" alt="Art">
             </div>
-            @endif
+        </div>
+        <div class="relative w-full h-full sm:absolute sm:left-1/2 sm:-translate-x-1/2 lg:left-0 lg:static lg:translate-x-0 bg-white sm:rounded-3xl sm:w-96 lg:w-3/10 sm:min-w-96 overflow-x-hidden overflow-y-auto sm:h-min max-h-full small-scroll shadow-lg">
+            <div class="bg-emerald-400 h-4 w-full"></div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#34d399" fill-opacity="1"
+                    d="M0,0L48,10.7C96,21,192,43,288,53.3C384,64,480,64,576,96C672,128,768,192,864,197.3C960,203,1056,149,1152,154.7C1248,160,1344,224,1392,256L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+                </path>
+            </svg>
+            <a href="{{ route('home') }}" class="lg:hidden">
+                <img class="relative -translate-y-3/4 ml-6 sm:ml-8 h-7 w-fit" src="{{ asset('images/logo_long.png') }}" alt="Logo LegacyArT">
+            </a>
+            <div class="ml-6 sm:ml-8 bg-emerald-100 absolute -translate-y-1/3 lg:-translate-y-3/4 rounded-full flex">
+                <div class="py-3 px-6 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full text-white font-medium">Reset Password
+                </div>
+            </div>
+            <div class="flex justify-center align-items w-full h-auto mt-14 sm:hidden">
+                <img class="h-full w-11/12" src="{{ asset('images/art.png') }}" alt="Art">
+            </div>
+            <form class="w-full mt-8 sm:mt-10 pb-8 px-6 space-y-4 sm:px-8" method="POST" action="{{ route('password.email') }}">
+                @csrf
 
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
-                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
-                    {{ __('Reset Password') }}
-                </header>
+                <div class="flex flex-wrap">
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">
+                        {{ __('Email') }}:
+                    </label>
 
-                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('password.email') }}">
-                    @csrf
+                    <input id="email" type="email"
+                        class="form-input w-full @error('email') border-red-500 @enderror  focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
+                        name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                    <div class="flex flex-wrap">
-                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('E-Mail Address') }}:
-                        </label>
-
-                        <input id="email" type="email"
-                            class="form-input w-full @error('email') border-red-500 @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                        @error('email')
-                        <p class="text-red-500 text-xs italic mt-4">
+                    @error('email')
+                        <p class="text-red-500 text-xs italic mt-0.5">
                             {{ $message }}
                         </p>
-                        @enderror
-                    </div>
+                    @enderror
+                </div>
 
-                    <div class="flex flex-wrap justify-center items-center space-y-6 pb-6 sm:pb-10 sm:space-y-0 sm:justify-between">
-                        <button type="submit"
-                        class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:w-auto sm:px-4 sm:order-1">
-                            {{ __('Send Password Reset Link') }}
-                        </button>
+                <div class="flex flex-wrap pt-6">
+                    <button type="submit"
+                        class="w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-white bg-emerald-400 hover:bg-emerald-500">
+                        {{ __('Reset Password') }}
+                    </button>
+                </div>
 
-                        <p class="mt-4 text-xs text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline hover:underline sm:text-sm sm:order-0 sm:m-0">
-                            <a class="text-blue-500 hover:text-blue-700 no-underline" href="{{ route('login') }}">
-                                {{ __('Back to login') }}
-                            </a>
-                        </p>
-                    </div>
-                </form>
-            </section>
+                <div class="flex flex-wrap">
+                    @if (Route::has('login'))
+                        <a href="{{ route('login') }}"
+                            class="flex items-center justify-center w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-slate-400 bg-white border-2 border-slate-200 hover:bg-slate-200">
+                            {{ __('Back to Login') }}
+                        </a>
+                    @endif
+                </div>
+            </form>
         </div>
     </div>
 </main>

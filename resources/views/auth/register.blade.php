@@ -1,94 +1,6 @@
 @extends('layouts.sign')
 
 @section('content')
-    {{-- <main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
-    <div class="flex">
-        <div class="w-full">
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
-
-                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
-                    {{ __('Register') }}
-                </header>
-
-                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST"
-                    action="{{ route('register') }}">
-                    @csrf
-
-                    <div class="flex flex-wrap">
-                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Name') }}:
-                        </label>
-
-                        <input id="name" type="text" class="form-input w-full @error('name')  border-red-500 @enderror"
-                            name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                        @error('name')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('E-Mail Address') }}:
-                        </label>
-
-                        <input id="email" type="email"
-                            class="form-input w-full @error('email') border-red-500 @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email">
-
-                        @error('email')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <label for="password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Password') }}:
-                        </label>
-
-                        <input id="password" type="password"
-                            class="form-input w-full @error('password') border-red-500 @enderror" name="password"
-                            required autocomplete="new-password">
-
-                        @error('password')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <label for="password-confirm" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Confirm Password') }}:
-                        </label>
-
-                        <input id="password-confirm" type="password" class="form-input w-full"
-                            name="password_confirmation" required autocomplete="new-password">
-                    </div>
-
-                    <div class="flex flex-wrap">
-                        <button type="submit"
-                            class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4">
-                            {{ __('Register') }}
-                        </button>
-
-                        <p class="w-full text-xs text-center text-gray-700 my-6 sm:text-sm sm:my-8">
-                            {{ __('Already have an account?') }}
-                            <a class="text-blue-500 hover:text-blue-700 no-underline hover:underline" href="{{ route('login') }}">
-                                {{ __('Login') }}
-                            </a>
-                        </p>
-                    </div>
-                </form>
-
-            </section>
-        </div>
-    </div>
-</main> --}}
     <main class="w-screen h-screen flex sm:py-16 items-center justify-center">
         <div class="w-screen sm:w-11/12 lg:w-5/6 sm:mx-auto h-full flex justify-between items-center relative">
             <div
@@ -101,7 +13,7 @@
                     #1 Discover, Collect, and Sell
                     Extraordinary NFTs.</h1>
                 <div class="block w-full h-auto 2xl:h-3/5">
-                    <img class="h-full w-full" src="{{ asset('images/art.png') }}" alt="Art">
+                    <img class="h-auto w-full" src="{{ asset('images/art.png') }}" alt="Art">
                 </div>
             </div>
             <div
@@ -129,12 +41,40 @@
                     <img class="h-full w-11/12" src="{{ asset('images/art.png') }}" alt="Art">
                 </div>
                 <form class="w-full mt-8 sm:mt-12 lg:mt-10 px-6 space-y-4 sm:px-8" method="POST"
-                    action="{{ route('register') }}">
+                    action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
+
+                    <div
+                        class="flex flex-wrap items-center justify-center @error('profile_image') border-red-500 @enderror">
+                        <label for="profile_image">
+                            <span
+                                class="relative inline-block h-24 w-24 rounded-xl overflow-hidden bg-emerald-100 overflow-hidden cursor-pointer">
+                                <svg class="h-full w-full text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                                <div class="absolute top-0 left-0 w-full h-full z-10 overflow-hidden">
+                                    <img id="profile_preview" src="{{ asset('images/art.png') }}" alt=""
+                                        class="h-full w-auto object-cover">
+                                </div>
+                                <div
+                                    class="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black-trans opacity-0 hover:opacity-100 z-20">
+                                    <x-bi-camera class="h-10 w-10 text-gray-600" />
+                                </div>
+                            </span>
+                        </label>
+                    </div>
+                    <input id="profile_image" type="file" class="hidden" name="profile_image" value="Profile"
+                        required autofocus>
+                    @error('profile_image')
+                        <p class="text-red-500 text-xs italic mt-0.5">
+                            {{ $message }}
+                        </p>
+                    @enderror
 
                     <div class="flex flex-wrap">
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2">
-                            {{ __('Name') }}:
+                            {{ __('Full Name') }}:
                         </label>
 
                         <input id="name" type="text"
@@ -147,6 +87,29 @@
                             </p>
                         @enderror
                     </div>
+
+                    <div class="flex flex-col flex-wrap">
+                        <label for="nickname" class="block text-gray-700 text-sm font-bold mb-2">
+                            {{ __('Nickname') }}:
+                        </label>
+
+                        <div class="flex rounded-md shadow-sm">
+                            <span
+                                class="inline-flex items-center px-4 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+                                @
+                            </span>
+                            <input id="nickname" type="text"
+                                class="form-input flex-1 min-w-0 block w-full @error('nickname') border-red-500 @enderror focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400 rounded-none rounded-r-md"
+                                name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname" autofocus>
+                        </div>
+
+                        @error('nickname')
+                            <p class="text-red-500 text-xs italic mt-0.5">
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+
                     <div class="flex flex-wrap">
                         <label for="email" class="block text-gray-700 text-sm font-bold mb-2">
                             {{ __('Email') }}:
@@ -208,7 +171,7 @@
                     <div class="flex flex-wrap">
                         @if (Route::has('google.login'))
                             <a href="{{ route('google.login') }}"
-                                class="flex items-center justify-center w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-slate-400 bg-white border-2 border-slate-100 hover:bg-slate-100">
+                                class="flex items-center justify-center w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-slate-400 bg-white border-2 border-slate-200 hover:bg-slate-200">
                                 <x-grommet-google class="h-5 w-5 mr-2" />
                                 {{ __('Continue with Google') }}
                             </a>
@@ -223,4 +186,22 @@
             </div>
         </div>
     </main>
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            console.log('haii')
+            $('#profile_image').change(function() {
+
+                let reader = new FileReader();
+
+                reader.onload = (e) => {
+
+                    $('#profile_preview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+
+            });
+
+        });
+    </script>
 @endsection
