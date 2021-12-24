@@ -25,6 +25,16 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('from-google', function($user){
+            return substr($user->profile_image, 0, 4) === "http";
+        });
+
+        Gate::define('can-create', function($user){
+            return $user && $user->role->name === "creator";
+        });
+
+        Gate::define('admin', function($user){
+            return $user->role->name === "admin";
+        });
     }
 }

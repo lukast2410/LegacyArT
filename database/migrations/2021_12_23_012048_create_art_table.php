@@ -1,11 +1,13 @@
 <?php
 
+use App\Traits\Uuids;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateArtTable extends Migration
 {
+    use Uuids;
     /**
      * Run the migrations.
      *
@@ -14,16 +16,18 @@ class CreateArtTable extends Migration
     public function up()
     {
         Schema::create('art', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->unsignedBigInteger('creator_id');
             $table->foreign('creator_id')->references('id')->on('creators')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->unsignedBigInteger('owner_id');
+            $table->unsignedBigInteger('owner_id')->nullable();
             $table->foreign('owner_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
+            $table->string('art_image');
             $table->text('description');
-            $table->string('status');
-            $table->unsignedDouble('sold_price');
+            $table->unsignedDouble('start_price');
+            $table->unsignedDouble('sold_price')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

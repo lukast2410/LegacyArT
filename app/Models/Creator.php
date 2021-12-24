@@ -9,4 +9,12 @@ class Creator extends Model
 {
     use HasFactory;
     public $timestamps = true;
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function arts(){
+        return $this->hasMany(Art::class);
+    }
 }

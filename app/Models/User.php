@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,4 +46,24 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function creator(){
+        return $this->hasOne(Creator::class);
+    }
+
+    public function role(){
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function arts(){
+        return $this->hasMany(Art::class);
+    }
+
+    public function requests(){
+        return $this->hasMany(Request::class);
+    }
+
+    public function bids(){
+        return $this->hasMany(Bid::class);
+    }
 }

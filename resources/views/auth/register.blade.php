@@ -37,10 +37,7 @@
                         Register
                     </div>
                 </div>
-                <div class="flex justify-center align-items w-full h-auto mt-14 sm:hidden">
-                    <img class="h-full w-11/12" src="{{ asset('images/art.png') }}" alt="Art">
-                </div>
-                <form class="w-full mt-8 sm:mt-12 lg:mt-10 px-6 space-y-4 sm:px-8" method="POST"
+                <form class="w-full mt-14 sm:mt-12 lg:mt-10 px-6 space-y-4 sm:px-8" method="POST
                     action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
 
@@ -64,8 +61,7 @@
                             </span>
                         </label>
                     </div>
-                    <input id="profile_image" type="file" class="hidden" name="profile_image" value="Profile"
-                        required autofocus>
+                    <input id="profile_image" type="file" class="hidden" name="profile_image" value="Profile" autofocus>
                     @error('profile_image')
                         <p class="text-red-500 text-xs italic mt-0.5">
                             {{ $message }}
@@ -188,20 +184,13 @@
     </main>
     <script type="text/javascript">
         $(document).ready(function(e) {
-            console.log('haii')
             $('#profile_image').change(function() {
-
                 let reader = new FileReader();
-
                 reader.onload = (e) => {
-
                     $('#profile_preview').attr('src', e.target.result);
                 }
-
                 reader.readAsDataURL(this.files[0]);
-
             });
-
         });
     </script>
 @endsection

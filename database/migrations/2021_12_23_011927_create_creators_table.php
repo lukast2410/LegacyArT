@@ -17,7 +17,7 @@ class CreateCreatorsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('banner_image');
+            $table->string('banner_image')->nullable();
             $table->text('bio');
             $table->timestamps();
         });
