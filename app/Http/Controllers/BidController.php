@@ -14,7 +14,22 @@ class BidController extends Controller
      */
     public function index()
     {
-        //
+        return view('bid_ongoing');
+    }
+
+    public function history()
+    {
+        return view('bid_history');
+    }
+
+    public function revenue()
+    {
+        return view('revenue');
+    }
+
+    public function transaction_history()
+    {
+        return view('transaction_history');
     }
 
     /**

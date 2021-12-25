@@ -13,7 +13,7 @@ class RequestCreatorController extends Controller
      */
     public function index()
     {
-        //
+        return view('view_request');
     }
 
     /**
@@ -23,7 +23,7 @@ class RequestCreatorController extends Controller
      */
     public function create()
     {
-        //
+        return view('request');
     }
 
     /**

@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user && $user->role->name === "creator";
         });
 
-        Gate::define('admin', function($user){
+        Gate::define('view-revenue', function($user){
             return $user->role->name === "admin";
         });
     }

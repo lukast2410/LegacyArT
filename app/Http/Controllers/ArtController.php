@@ -24,7 +24,7 @@ class ArtController extends Controller
      */
     public function create()
     {
-        //
+        return view('create_art');
     }
 
     /**
@@ -44,9 +44,11 @@ class ArtController extends Controller
      * @param  \App\Models\Art  $art
      * @return \Illuminate\Http\Response
      */
-    public function show(Art $art)
+    public function show($id)
     {
-        //
+        $art = Art::find($id);
+        
+        return view('art')->with(compact('art'));
     }
 
     /**
