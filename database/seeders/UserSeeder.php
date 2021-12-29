@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
             'profile_image' => 'profile/68a11aef-d169-4f64-964d-701b11696076.jpg',
             'email_verified_at' => now(),
             'role_id' => 3,
+            'created_at' => now()
         ]);
         DB::table('users')->insert([
             'name' => 'First Creator',
@@ -31,6 +32,7 @@ class UserSeeder extends Seeder
             'profile_image' => 'profile/a1e6f81d-e8d2-4aab-94e8-19bec39f7281.png',
             'email_verified_at' => now(),
             'role_id' => 2,
+            'created_at' => now()
         ]);
         DB::table('users')->insert([
             'name' => 'Legends',
@@ -40,6 +42,7 @@ class UserSeeder extends Seeder
             'profile_image' => 'profile/e7b1bb88-81ab-47fd-99e4-fe2a98b67dca.jpg',
             'email_verified_at' => now(),
             'role_id' => 2,
+            'created_at' => now()
         ]);
     }
 }

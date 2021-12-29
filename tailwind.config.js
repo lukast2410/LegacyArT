@@ -27,12 +27,22 @@ module.exports = {
       },
       height: {
         '18' : '4.5rem',
-      }
+      },
+      maxHeight: {
+        'screen-60': '60vh',
+      },
+      minHeight: {
+        'full-without-nav': 'calc(100vh - 4.5rem)',
+        '3/5': '60%'
+      },
+      gridTemplateColumns: {
+        '2fr': 'repeat(2, 1fr)'
+      },
     }
   },
   variants: {},
   plugins: [
-    require('@tailwindcss/ui'),
-    require('@tailwindcss/forms'),
+    // require('@tailwindcss/ui'),
+    // require('@tailwindcss/forms'),
   ]
 }

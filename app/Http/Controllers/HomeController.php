@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Art;
+use App\Models\Creator;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $creators = Creator::inRandomOrder()->get();
+        $arts = Art::whereNull('owner_id')->inRandomOrder()->limit(24)->get();
+        $newest = Art::whereNull('owner_id')->inRandomOrder()->first();
+
+        return view('home')->with(compact(['creators', 'arts', 'newest']));
     }
 }

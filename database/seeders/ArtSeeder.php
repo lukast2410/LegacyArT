@@ -24,6 +24,7 @@ class ArtSeeder extends Seeder
             'description' => 'The Shiba Social Club is a collection of 7777 Shiba NFTs inspired by the new wealthy generation of crypto-currency and NFTs. Each piece is a unique 3d artwork with a collection of more than 150+ traits. The objective is to build the strongest community and project around NFTs.',
             'start_price' => 1,
             'sold_price' => 123,
+            'created_at' => now()
         ]);
         DB::table('art')->insert([
             'id' => Str::orderedUuid(),
@@ -32,6 +33,7 @@ class ArtSeeder extends Seeder
             'art_image' => 'art/5b1b2986-22f5-4e2b-9349-eade6a19117f.jpg',
             'description' => 'The original Arcus collection by Rik Oostenbroek.',
             'start_price' => 0.5,
+            'created_at' => now()
         ]);
         DB::table('art')->insert([
             'id' => Str::orderedUuid(),
@@ -40,6 +42,7 @@ class ArtSeeder extends Seeder
             'art_image' => 'art/8d8ef889-4edd-49da-aef8-6ae909b79d05.png',
             'description' => 'Mahalo! I\'m Kitty. I\'m a professional Foreign Film Director and I love steak. When my owner isn\'t watching, I steal their silk scarves and use them for litter paper. I\'m not sorry. Our friendship will be gorgeous, voluptuous, and full of wet food.',
             'start_price' => 0.25,
+            'created_at' => now()
         ]);
         DB::table('art')->insert([
             'id' => Str::orderedUuid(),
@@ -48,6 +51,7 @@ class ArtSeeder extends Seeder
             'art_image' => 'art/9d16e3f2-4a33-4c7d-ae2d-f467fded78cc.png',
             'description' => 'The Shiba Social Club is a collection of 7777 Shiba NFTs inspired by the new wealthy generation of crypto-currency and NFTs. Each piece is a unique 3d artwork with a collection of more than 150+ traits. The objective is to build the strongest community and project around NFTs.',
             'start_price' => 0.35,
+            'created_at' => now()
         ]);
         DB::table('art')->insert([
             'id' => Str::orderedUuid(),
@@ -58,6 +62,7 @@ class ArtSeeder extends Seeder
             'description' => 'winces. My name is CryptoKitties #5. I love to wear magenta. I\'m well-educated, don\'t worry. If I were a cheese, I would definitely be goat cheese, no question.',
             'start_price' => 3,
             'sold_price' => 350,
+            'created_at' => now()
         ]);
         DB::table('art')->insert([
             'id' => Str::orderedUuid(),
@@ -68,6 +73,7 @@ class ArtSeeder extends Seeder
             'description' => 'The original Arcus collection by Rik Oostenbroek.',
             'sold_price' => 45.5,
             'start_price' => 1.5,
+            'created_at' => now()
         ]);
         DB::table('art')->insert([
             'id' => Str::orderedUuid(),
@@ -78,6 +84,7 @@ class ArtSeeder extends Seeder
             'description' => 'Metaclubber - Not Revealed',
             'start_price' => 0.5,
             'sold_price' => 3.35,
+            'created_at' => now()
         ]);
         DB::table('art')->insert([
             'id' => Str::orderedUuid(),
@@ -86,6 +93,7 @@ class ArtSeeder extends Seeder
             'art_image' => 'art/9456eff7-5456-49cf-b525-7f4860d5d1d8.png',
             'description' => 'Salutations. I respond to Mocha Slippybean, although that doesn\'t mean I\'ll acknowledge you. I\'m trying to consume at least one serving of vegan burgers every day. It\'s a newer health thing I read about on the web. Whenever I hear LCD Soundsystem I just have to kiss.',
             'start_price' => 0.45,
+            'created_at' => now()
         ]);
         DB::table('art')->insert([
             'id' => Str::orderedUuid(),
@@ -94,6 +102,7 @@ class ArtSeeder extends Seeder
             'art_image' => 'art/71934122-cfc3-4549-89d1-568c1ce1502b.png',
             'description' => 'The Shiba Social Club is a collection of 7777 Shiba NFTs inspired by the new wealthy generation of crypto-currency and NFTs. Each piece is a unique 3d artwork with a collection of more than 150+ traits. The objective is to build the strongest community and project around NFTs.',
             'start_price' => 0.25,
+            'created_at' => now()
         ]);
         DB::table('art')->insert([
             'id' => Str::orderedUuid(),
@@ -102,6 +111,7 @@ class ArtSeeder extends Seeder
             'art_image' => 'art/ae041e45-ba58-4f42-834d-fc9743006d26.jpg',
             'description' => 'The original Arcus collection by Rik Oostenbroek.',
             'start_price' => 0.1,
+            'created_at' => now()
         ]);
         DB::table('art')->insert([
             'id' => Str::orderedUuid(),
@@ -110,6 +120,7 @@ class ArtSeeder extends Seeder
             'art_image' => 'art/ce30b435-5744-438b-878c-2fb428c49d59.png',
             'description' => 'Crypto Champions is a collection of 8,888 unique NFT characters divided into two factions living on the Ethereum blockchain. Each Champion is an original combination of attributes ready to fight in the upcoming metawar. It is the first collection to feature exceptional and ultra-realistic 3D human soldier artwork and offers holders a first-of-its-kind utility.',
             'start_price' => 0.3,
+            'created_at' => now()
         ]);
         DB::table('art')->insert([
             'id' => Str::orderedUuid(),
@@ -118,6 +129,7 @@ class ArtSeeder extends Seeder
             'art_image' => 'art/d904561a-c266-41ad-9240-265ea5aa5e11.png',
             'description' => 'Crypto Champions is a collection of 8,888 unique NFT characters divided into two factions living on the Ethereum blockchain. Each Champion is an original combination of attributes ready to fight in the upcoming metawar. It is the first collection to feature exceptional and ultra-realistic 3D human soldier artwork and offers holders a first-of-its-kind utility.',
             'start_price' => 0.55,
+            'created_at' => now()
         ]);
     }
 }

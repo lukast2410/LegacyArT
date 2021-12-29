@@ -9,6 +9,7 @@ class Art extends Model
 {
     use HasFactory;
     public $timestamps = true;
+    protected $keyType = 'string';
 
     public function creator(){
         return $this->belongsTo(Creator::class, 'creator_id');
@@ -16,5 +17,9 @@ class Art extends Model
 
     public function owner(){
         return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function bids(){
+        return $this->hasMany(Bid::class);
     }
 }

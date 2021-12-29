@@ -56,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function arts(){
-        return $this->hasMany(Art::class);
+        return $this->hasMany(Art::class, 'owner_id');
     }
 
     public function requests(){
