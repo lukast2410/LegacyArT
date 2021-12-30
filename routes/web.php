@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\RequestCreatorController;
 use App\Http\Controllers\UserController;
@@ -27,6 +28,7 @@ Route::get('auth/google/callback', [GoogleController::class, 'callback'])->name(
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/profile/{nickname}', [UserController::class, 'show'])->name('user.profile');
 Route::get('/art/{id}', [ArtController::class, 'show'])->name('art.detail');
+Route::post('/email/resend-verification', [VerificationController::class, 'resendVerification'])->middleware(['auth', 'throttle:6,1'])->name('resend.verification');
 
 // For User except admin
 Route::middleware(['auth', 'not.admin'])->group(function() {

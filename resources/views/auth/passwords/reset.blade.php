@@ -41,7 +41,7 @@
                     </label>
 
                     <input id="email" type="email"
-                        class="form-input w-full @error('email') border-red-500 @enderror  focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
+                        class="@error('email') border-red-500 @enderror appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
                         name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
                     @error('email')
@@ -57,7 +57,7 @@
                     </label>
 
                     <input id="password" type="password"
-                        class="form-input w-full @error('password') border-red-500 @enderror focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
+                        class="@error('password') border-red-500 @enderror appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
                         name="password" required>
 
                     @error('password')
@@ -72,7 +72,7 @@
                         {{ __('Confirm Password') }}:
                     </label>
 
-                    <input id="password-confirm" type="password" class="form-input w-full focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
+                    <input id="password-confirm" type="password" class="form-input w-full appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
                         name="password_confirmation" required autocomplete="new-password">
                 </div>
 

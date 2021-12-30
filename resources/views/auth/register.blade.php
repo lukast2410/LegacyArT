@@ -37,7 +37,7 @@
                         Register
                     </div>
                 </div>
-                <form class="w-full mt-14 sm:mt-12 lg:mt-10 px-6 space-y-4 sm:px-8" method="POST
+                <form class="w-full mt-14 sm:mt-12 lg:mt-10 px-6 space-y-4 sm:px-8" method="POST"
                     action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
 
@@ -51,8 +51,7 @@
                                         d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                                 </svg>
                                 <div class="absolute top-0 left-0 w-full h-full z-10 overflow-hidden">
-                                    <img id="profile_preview" src="" alt=""
-                                        class="h-full w-auto object-cover">
+                                    <img id="profile_preview" src="" alt="" class="h-full w-auto object-cover">
                                 </div>
                                 <div
                                     class="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black-trans opacity-0 hover:opacity-100 z-20">
@@ -61,7 +60,7 @@
                             </span>
                         </label>
                     </div>
-                    <input id="profile_image" type="file" class="hidden" name="profile_image" value="Profile" autofocus>
+                    <input id="profile_image" type="file" class="hidden" name="profile_image" value="Profile">
                     @error('profile_image')
                         <p class="text-red-500 text-xs italic mt-0.5">
                             {{ $message }}
@@ -74,7 +73,7 @@
                         </label>
 
                         <input id="name" type="text"
-                            class="form-input w-full @error('name') border-red-500 @enderror  focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
+                            class="@error('name') border-red-500 @enderror appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
                             name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                         @error('name')
@@ -95,8 +94,8 @@
                                 @
                             </span>
                             <input id="nickname" type="text"
-                                class="form-input flex-1 min-w-0 block w-full @error('nickname') border-red-500 @enderror focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400 rounded-none rounded-r-md"
-                                name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname" autofocus>
+                                class="form-input flex-1 min-w-0 block w-full @error('nickname') border-red-500 @enderror appearance-none border-2 border-gray-200 shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2 rounded-none rounded-r-md"
+                                name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname">
                         </div>
 
                         @error('nickname')
@@ -112,8 +111,8 @@
                         </label>
 
                         <input id="email" type="email"
-                            class="form-input w-full @error('email') border-red-500 @enderror  focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
-                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            class="@error('email') border-red-500 @enderror appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
+                            name="email" value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
                             <p class="text-red-500 text-xs italic mt-0.5">
@@ -127,7 +126,7 @@
                         </label>
 
                         <input id="password" type="password"
-                            class="form-input w-full @error('password') border-red-500 @enderror focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
+                            class="@error('password') border-red-500 @enderror appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
                             name="password" required>
 
                         @error('password')
@@ -142,7 +141,7 @@
                         </label>
 
                         <input id="password-confirm" type="password"
-                            class="form-input w-full focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
+                            class="appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
                             name="password_confirmation" required autocomplete="new-password">
                     </div>
 
@@ -167,7 +166,7 @@
                     <div class="flex flex-wrap">
                         @if (Route::has('google.login'))
                             <a href="{{ route('google.login') }}"
-                                class="flex items-center justify-center w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-slate-400 bg-white border-2 border-slate-200 hover:bg-slate-200">
+                                class="flex items-center justify-center w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-slate-400 bg-white border-2 border-gray-200 hover:bg-gray-200">
                                 <x-grommet-google class="h-5 w-5 mr-2" />
                                 {{ __('Continue with Google') }}
                             </a>

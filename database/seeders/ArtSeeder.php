@@ -16,7 +16,7 @@ class ArtSeeder extends Seeder
     public function run()
     {
         DB::table('art')->insert([
-            'id' => Str::orderedUuid(),
+            'id' => 'f392fbf4-0216-45e1-bba5-610f6c2cbe99',
             'creator_id' => 2,
             'owner_id' => 2,
             'name' => 'Hip Hop Shiba',
@@ -54,7 +54,7 @@ class ArtSeeder extends Seeder
             'created_at' => now()
         ]);
         DB::table('art')->insert([
-            'id' => Str::orderedUuid(),
+            'id' => '56d7f092-6b58-4fda-9ea0-831dbc78a731',
             'creator_id' => 1,
             'owner_id' => 3,
             'name' => 'CryptoKitties #5',
@@ -65,7 +65,7 @@ class ArtSeeder extends Seeder
             'created_at' => now()
         ]);
         DB::table('art')->insert([
-            'id' => Str::orderedUuid(),
+            'id' => 'ae5ec4d7-ce12-4e30-bf75-b67995e1046c',
             'creator_id' => 1,
             'owner_id' => 3,
             'name' => 'Arcus #18 - Goliath',
@@ -76,7 +76,7 @@ class ArtSeeder extends Seeder
             'created_at' => now()
         ]);
         DB::table('art')->insert([
-            'id' => Str::orderedUuid(),
+            'id' => '7bd45e39-d498-4270-b2d4-0e8d91f0f560',
             'creator_id' => 2,
             'owner_id' => 2,
             'name' => 'Metaclubber',
@@ -96,7 +96,7 @@ class ArtSeeder extends Seeder
             'created_at' => now()
         ]);
         DB::table('art')->insert([
-            'id' => Str::orderedUuid(),
+            'id' => '6cdc28ec-ccfb-443d-a21a-4d6fc93bd4cf',
             'creator_id' => 2,
             'name' => 'Shiba #1316',
             'art_image' => 'art/71934122-cfc3-4549-89d1-568c1ce1502b.png',

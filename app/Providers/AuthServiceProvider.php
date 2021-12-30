@@ -36,5 +36,17 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('view-revenue', function($user){
             return $user->role->name === "admin";
         });
+
+        Gate::define('can-request', function($user, $profile){
+            return $user && $user->id == $profile->id && $user->role->name === "user";
+        });
+
+        Gate::define('verify', function($user) {
+            return $user->email_verified_at == null;
+        });
+
+        Gate::define('profile-owner', function($user, $profile){
+            return $user && $user->id == $profile->id;
+        });
     }
 }

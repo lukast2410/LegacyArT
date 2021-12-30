@@ -36,11 +36,11 @@
                                         View Revenue
                                     </a>
                                 @else
-                                    <a href="#"
+                                    <a href="{{ route('bid.ongoing') }}"
                                         class="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 font-bold">
                                         Bids
                                     </a>
-                                    <a href="#"
+                                    <a href="{{ route('transaction.history') }}"
                                         class="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 font-bold">
                                         Transactions
                                     </a>
@@ -96,12 +96,51 @@
                                     <div class="hidden origin-top-right absolute right-0 w-56 rounded-md shadow-lg mt-2 py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         id="profile-dropdown" role="menu" aria-orientation="vertical"
                                         aria-labelledby="user-menu-button" tabindex="-1">
-                                        <a href="" class="hover:bg-gray-200 block px-4 py-2 text-sm text-gray-700"
-                                            role="menuitem" tabindex="-1" id="user-menu-item-0">My Profile</a>
+                                        @can('verify')
+                                            <button type="button"
+                                                class="flex w-52 rounded-md bg-red-100 p-2 mx-2 my-2 hover:bg-red-200"
+                                                onclick="event.preventDefault(); document.getElementById('resend-verification-form').submit();">
+                                                <div class="flex-shrink-0">
+                                                    <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h3 class="text-sm font-medium text-red-800">
+                                                        Verify Email
+                                                    </h3>
+                                                </div>
+                                            </button>
+                                            <form id="resend-verification-form" method="POST"
+                                                action="{{ route('resend.verification') }}" class="hidden">
+                                                @csrf
+                                            </form>
+                                        @else
+                                            <div class="flex w-52 rounded-md bg-green-100 p-2 mx-2 my-2">
+                                                <div class="flex-shrink-0">
+                                                    <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <h3 class="text-sm font-medium text-green-800">
+                                                        Email Verified
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        @endcan
+                                        <a href="{{ route('user.profile', '@' . Auth::user()->nickname) }}"
+                                            class="hover:bg-gray-200 block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                            tabindex="-1" id="user-menu-item-0">My Profile</a>
                                         <a href="{{ route('logout') }}"
                                             class="hover:bg-gray-200 block px-4 py-2 text-sm text-gray-700"
-                                            onclick="event.preventDefault();
-                                                                                                                            document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                             class="hidden">
                                             {{ csrf_field() }}
@@ -146,7 +185,7 @@
                                         d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                 </svg>
                             </a>
-                            <a href="{{ '/revenue' }}"
+                            <a href="{{ route('revenue') }}"
                                 class="hover:bg-emerald-100 transition inline-grid place-items-center my-2 mr-2 ml-1 rounded-md text-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -176,11 +215,11 @@
                                         d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                 </svg>
                             </a>
-                            <a href="{{ '/bid' }}"
+                            <a href="{{ route('bid.ongoing') }}"
                                 class="hover:bg-emerald-100 transition inline-grid place-items-center my-2 mr-2 ml-1 rounded-md text-gray-500">
                                 <x-ri-auction-line class="h-6 w-6" />
                             </a>
-                            <a href="{{ '/transaction' }}"
+                            <a href="{{ route('transaction.history') }}"
                                 class="hover:bg-emerald-100 transition inline-grid place-items-center my-2 mr-2 ml-1 rounded-md text-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -206,12 +245,15 @@
         </nav>
 
         <div class="md:h-18"></div>
-        @yield('content')
+        <div class="min-h-full-without-nav">
+            @yield('content')
+        </div>
 
         <footer class="bg-emerald-200 pb-16 md:pb-0">
             <div class="max-w-screen-2xl mx-auto py-12 px-6 sm:px-8 md:flex md:items-center md:justify-between">
                 <div class="flex justify-center space-x-6 md:order-2">
-                    <a href="https://www.facebook.com/lukas.tanto.3/" class="text-gray-600 hover:text-gray-900 transition-all">
+                    <a href="https://www.facebook.com/lukas.tanto.3/"
+                        class="text-gray-600 hover:text-gray-900 transition-all">
                         <span class="sr-only">Facebook</span>
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill-rule="evenodd"
@@ -220,7 +262,8 @@
                         </svg>
                     </a>
 
-                    <a href="https://www.instagram.com/lukast2410" class="text-gray-600 hover:text-gray-900 transition-all">
+                    <a href="https://www.instagram.com/lukast2410"
+                        class="text-gray-600 hover:text-gray-900 transition-all">
                         <span class="sr-only">Instagram</span>
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill-rule="evenodd"
@@ -263,13 +306,7 @@
             </div>
         </footer>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-            $('#user-menu-button').click(function() {
-                $('#profile-dropdown').toggleClass('hidden');
-            });
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('js/navbar.js') }}"></script>
 </body>
 
 </html>

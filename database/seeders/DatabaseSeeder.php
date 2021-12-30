@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CreatorSeeder::class,
             ArtSeeder::class,
+            BidSeeder::class,
         ]);
     }
 }

@@ -3,17 +3,21 @@
 @section('content')
     <main class="w-screen h-screen flex sm:py-16 items-center justify-center">
         <div class="w-screen sm:w-11/12 lg:w-5/6 sm:mx-auto h-full flex justify-between items-center relative">
-            <div class="hidden sm:flex flex-col justify-end lg:justify-center xl:justify-between w-full lg:w-3/5 h-full lg:mr-8">
+            <div
+                class="hidden sm:flex flex-col justify-end lg:justify-center xl:justify-between w-full lg:w-3/5 h-full lg:mr-8">
                 <a href="{{ route('home') }}" class="hidden lg:block">
                     <img class="h-10 w-fit" src="{{ asset('images/logo_long.png') }}" alt="Logo LegacyArT">
                 </a>
-                <h1 class="hidden lg:block text-4.5xl xl:text-4.75xl 2xl:text-5xl leading-tight 2xl:leading-snug font-bold pt-6 xl:pt-0 pb-8 xl:pb-6">#1 Discover, Collect, and Sell
+                <h1
+                    class="hidden lg:block text-4.5xl xl:text-4.75xl 2xl:text-5xl leading-tight 2xl:leading-snug font-bold pt-6 xl:pt-0 pb-8 xl:pb-6">
+                    #1 Discover, Collect, and Sell
                     Extraordinary NFTs.</h1>
                 <div class="block w-full h-auto 2xl:h-3/5">
                     <img class="h-auto w-full" src="{{ asset('images/art.png') }}" alt="Art">
                 </div>
             </div>
-            <div class="relative w-full h-full sm:absolute sm:left-1/2 sm:-translate-x-1/2 lg:left-0 lg:static lg:translate-x-0 bg-white sm:rounded-3xl sm:w-96 lg:w-3/10 sm:min-w-96 overflow-x-hidden overflow-y-auto sm:h-min max-h-full small-scroll shadow-lg">
+            <div
+                class="relative w-full h-full sm:absolute sm:left-1/2 sm:-translate-x-1/2 lg:left-0 lg:static lg:translate-x-0 bg-white sm:rounded-3xl sm:w-96 lg:w-3/10 sm:min-w-96 overflow-x-hidden overflow-y-auto sm:h-min max-h-full small-scroll shadow-lg">
                 <div class="bg-emerald-400 h-4 w-full"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                     <path fill="#34d399" fill-opacity="1"
@@ -21,10 +25,13 @@
                     </path>
                 </svg>
                 <a href="{{ route('home') }}" class="lg:hidden">
-                    <img class="relative -translate-y-3/4 ml-6 sm:ml-8 h-7 w-fit" src="{{ asset('images/logo_long.png') }}" alt="Logo LegacyArT">
+                    <img class="relative -translate-y-3/4 ml-6 sm:ml-8 h-7 w-fit"
+                        src="{{ asset('images/logo_long.png') }}" alt="Logo LegacyArT">
                 </a>
                 <div class="ml-6 sm:ml-8 bg-emerald-100 absolute -translate-y-1/3 lg:-translate-y-3/4 rounded-full flex">
-                    <div class="py-3 px-6 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full text-white font-medium">Login
+                    <div
+                        class="py-3 px-6 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full text-white font-medium">
+                        Login
                     </div>
                     @if (Route::has('register'))
                         <a class="py-3 pr-5 pl-3" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -33,7 +40,8 @@
                 <div class="flex justify-center align-items w-full h-auto mt-14 sm:hidden">
                     <img class="h-full w-11/12" src="{{ asset('images/art.png') }}" alt="Art">
                 </div>
-                <form class="w-full mt-8 sm:mt-12 lg:mt-10 px-6 space-y-4 sm:px-8" method="POST" action="{{ route('login') }}">
+                <form class="w-full mt-8 sm:mt-12 lg:mt-10 px-6 space-y-4 sm:px-8" method="POST"
+                    action="{{ route('login') }}">
                     @csrf
 
                     <div class="flex flex-wrap">
@@ -42,7 +50,7 @@
                         </label>
 
                         <input id="email" type="email"
-                            class="form-input w-full @error('email') border-red-500 @enderror  focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
+                            class="@error('email') border-red-500 @enderror appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                         @error('email')
@@ -58,7 +66,7 @@
                         </label>
 
                         <input id="password" type="password"
-                            class="form-input w-full @error('password') border-red-500 @enderror focus:shadow-none focus:border-emerald-400 focus:ring-emerald-400"
+                            class="@error('password') border-red-500 @enderror appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
                             name="password" required>
 
                         @error('password')
@@ -113,8 +121,8 @@
                     </div>
                 </form>
                 <footer class="bg-gray-100 p-3 text-center text-xs font-medium text-gray-500 mt-8">
-                    By clicking the button above, you agree to our 
-                    <span class="text-green-400">terms</span> and 
+                    By clicking the button above, you agree to our
+                    <span class="text-green-400">terms</span> and
                     <span class="text-green-400">conditions</span>
                 </footer>
             </div>

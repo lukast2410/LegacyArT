@@ -2,9 +2,11 @@
 
 @section('content')
     <header class="w-full bg-white shadow shadow-md">
-        <div class="h-72">
-            <img src="{{ asset('storage/' . $user->creator->banner_image) }}" alt="Banner"
-                class="h-full w-full object-cover object-center">
+        <div class="h-72 bg-emerald-400">
+            @if ($user->creator)
+                <img src="{{ asset('storage/' . $user->creator->banner_image) }}" alt="Banner"
+                    class="h-full w-full object-cover object-center">
+            @endif
         </div>
         <div class="relative">
             <div class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 h-36 w-36 bg-emerald-300 rounded-full p-1">
@@ -18,121 +20,129 @@
                 <span
                     class="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-700 to-emerald-400">{{ '@' . $user->nickname }}</span>
             </div>
+            @can('profile-owner', $user)
+                @can('verify')
+                    <button type="button"
+                        class="mt-1 inline-flex items-center px-2 py-1 border border-transparent text-sm font-medium rounded-md shadow-sm text-red-500 hover:text-red-700 focus:outline-none"
+                        onclick="event.preventDefault(); document.getElementById('resend-verification-form').submit();">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                            aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span class="ml-1 font-bold">Email not verified</span>
+                    </button>
+                    <form id="resend-verification-form" method="POST" action="{{ route('resend.verification') }}"
+                        class="hidden">
+                        @csrf
+                    </form>
+                @else
+                    <div
+                        class="mt-1 inline-flex items-center px-2 py-1 border border-transparent text-sm font-medium rounded-md shadow-sm text-emerald-500 focus:outline-none">
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                            aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span class="ml-1 font-bold">Email verified</span>
+                    </div>
+                @endcan
+            @endcan
             <h3 class="mt-2 text-lg text-gray-600 font-medium">Joined {{ date_format($user->created_at, 'M d, Y') }}</h3>
             @if ($user->creator)
                 <div class="mt-2 flex justify-center items-center">
-                    <p class="max-w-screen-sm w-full px-8 text-sm font-semibold text-emerald-700 border-t-2 border-emerald-400 pt-2">{{ $user->creator->bio }}
+                    <p
+                        class="max-w-screen-sm w-full mx-6 sm:mx-8 text-sm font-semibold text-emerald-700 border-t-2 border-emerald-400 pt-2">
+                        {{ $user->creator->bio }}
                     </p>
                 </div>
             @endif
         </div>
-        <nav class="mt-3 w-full max-w-screen-2xl px-6 sm:px-8 mx-auto flex space-x-2">
-            <div class="flex items-center space-x-2 px-4 py-3 cursor-pointer border-b-4 border-transparent border-emerald-500">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
-                <span class="font-semibold text-lg">Collected</span>
-                <span class="text-sm font-medium text-gray-500">{{ count($user->arts) }}</span>
+        <nav
+            class="mt-8 sm:mt-6 w-full max-w-screen-2xl px-6 sm:px-8 mx-auto flex sm:space-x-2 justify-between items-start sm:items-center flex-col-reverse sm:flex-row">
+            <div class="flex space-x-2 flex-1 w-full sm:w-min">
+                <div id="profile-collected-art"
+                    class="flex flex-1 sm:flex-none items-center justify-center space-x-2 px-4 py-3 cursor-pointer border-b-4 border-transparent border-emerald-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                    <span class="font-semibold text-lg">Collected</span>
+                    <span
+                        class="bg-emerald-100 text-emerald-700 py-0.5 px-2 rounded-full text-xs font-medium inline-block">{{ count($user->arts) }}</span>
+                </div>
+                @if ($user->creator)
+                    <div id="profile-created-art"
+                        class="flex flex-1 sm:flex-none items-center justify-center space-x-2 px-4 py-3 cursor-pointer border-b-4 border-transparent hover:border-gray-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span class="font-semibold text-lg">Created</span>
+                        <span
+                            class="bg-emerald-100 text-emerald-700 py-0.5 px-2 rounded-full text-xs font-medium inline-block">{{ count($user->creator->arts) }}</span>
+                    </div>
+                @endif
             </div>
-            <div class="flex items-center space-x-2 px-4 py-3 cursor-pointer border-b-4 border-transparent hover:border-gray-200">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <span class="font-semibold text-lg">Created</span>
-                <span class="text-sm font-medium text-gray-500">{{ count($user->creator->arts) }}</span>
-            </div>
+            @can('can-request', $user)
+                <a href="{{ route('request.creator') }}"
+                    class="sm:ml-4 mb-4 sm:mb-0 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-emerald-400 hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400">
+                    Upgrade to Creator
+                </a>
+            @endcan
         </nav>
     </header>
     <main class="w-full max-w-screen-2xl sm:mx-auto">
         <div class="w-full px-6 sm:px-8">
             <section id="collected" class="py-8">
-                <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-8">
-                    @foreach ($user->arts as $art)
-                        <div
-                            class="h-full min-h-min flex flex-col bg-gray-50 rounded-lg overflow-hidden shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                            <a class="min-h-3/5" href="{{ route('art.detail', $art->id) }}">
-                                <img class="w-full h-full object-cover bg-emerald-100"
-                                    src="{{ asset('storage/' . $art->art_image) }}" alt="Art Image">
+                @if (count($user->arts) == 0)
+                    <div class="w-full max-w-screen-2xl mx-auto">
+                        <div class="w-full bg-emerald-200 text-center rounded-lg px-4 py-10 mb-4">
+                            <h1 class="text-emerald-700 text-base sm:text-2xl font-bold">
+                                There are no collected art yet
+                            </h1>
+                            <a href="{{ route('home') }}"
+                                class="text-emerald-600 text-sm sm:text-base font-medium hover:text-emerald-700">
+                                Let's buy some art.
                             </a>
-                            <div class="w-full flex-1 pt-3 px-5 pb-5">
-                                <a href="{{ route('art.detail', $art->id) }}"
-                                    class="block text-2xl font-bold text-emerald-800 truncate">{{ $art->name }}</a>
-                                <div class="flex mt-3">
-                                    <a href="{{ route('user.profile', '@' . $art->creator->user->nickname) }}"
-                                        class="flex space-x-2 items-center text-gray-500 hover:text-gray-700">
-                                        <img class="h-8 w-8 rounded-full overflow-hidden object-cover"
-                                            src="{{ asset('storage/' . $art->creator->user->profile_image) }}"
-                                            alt="Creator Profile">
-                                        <span class="font-bold">{{ '@' . $art->creator->user->nickname }}</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="bg-emerald-800 w-full py-4 px-5 text-white flex justify-between">
-                                <a href="{{ route('art.detail', $art->id) }}" class="flex-1 mr-3">
-                                    <h3 class="text-emerald-400 font-medium">Start bid</h3>
-                                    <h2 class="text-xl font-semibold">{{ number_format(floor($art->start_price)) . (count(explode('.', $art->start_price)) == 2 ? '.'.explode('.', $art->start_price)[1] : '') }} ETH</h2>
+                        </div>
+                    </div>
+                @else
+                    <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-8">
+                        @foreach ($user->arts as $art)
+                            <x-art-card :art="$art" />
+                        @endforeach
+                    </div>
+                @endif
+            </section>
+            @if ($user->creator)
+                <section id="created" class="py-8 hidden">
+                    @if (count($user->creator->arts) == 0)
+                        <div class="w-full max-w-screen-2xl mx-auto">
+                            <div class="w-full bg-emerald-200 text-center rounded-lg px-4 py-10 mb-4">
+                                <h1 class="text-emerald-700 text-base sm:text-2xl font-bold">
+                                    There are no created art yet
+                                </h1>
+                                <a href="{{ route('create.art') }}"
+                                    class="text-emerald-600 text-sm sm:text-base font-medium hover:text-emerald-700">
+                                    Let's create some art.
                                 </a>
-                                @if ($art->owner)
-                                    <div class="text-right">
-                                        <a href="{{ route('art.detail', $art->id) }}">
-                                            <h3 class="text-emerald-400 font-medium">Owned by</h3>
-                                        </a>
-                                        <a href="{{ route('user.profile', '@'.$art->owner->nickname) }}" class="text-gray-300 hover:text-white">
-                                            <h2 class="text-md leading-8 font-semibold">{{ "@".$art->owner->nickname }}</h2>
-                                        </a>
-                                    </div>
-                                @endif
                             </div>
                         </div>
-                    @endforeach
-                </div>
-            </section>
-            <section id="created" class="py-8">
-                <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-8">
-                    @foreach ($user->creator->arts as $art)
-                        <div
-                            class="h-full min-h-min flex flex-col bg-gray-50 rounded-lg overflow-hidden shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                            <a class="min-h-3/5" href="{{ route('art.detail', $art->id) }}">
-                                <img class="w-full h-full object-cover bg-emerald-100"
-                                    src="{{ asset('storage/' . $art->art_image) }}" alt="Art Image">
-                            </a>
-                            <div class="w-full flex-1 pt-3 px-5 pb-5">
-                                <a href="{{ route('art.detail', $art->id) }}"
-                                    class="block text-2xl font-bold text-emerald-800 truncate">{{ $art->name }}</a>
-                                <div class="flex mt-3">
-                                    <a href="{{ route('user.profile', '@' . $art->creator->user->nickname) }}"
-                                        class="flex space-x-2 items-center text-gray-500 hover:text-gray-700">
-                                        <img class="h-8 w-8 rounded-full overflow-hidden object-cover"
-                                            src="{{ asset('storage/' . $art->creator->user->profile_image) }}"
-                                            alt="Creator Profile">
-                                        <span class="font-bold">{{ '@' . $art->creator->user->nickname }}</span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="bg-emerald-800 w-full py-4 px-5 text-white flex justify-between">
-                                <a href="{{ route('art.detail', $art->id) }}" class="flex-1 mr-3">
-                                    <h3 class="text-emerald-400 font-medium">Start bid</h3>
-                                    <h2 class="text-xl font-semibold">{{ number_format(floor($art->start_price)) . (count(explode('.', $art->start_price)) == 2 ? '.'.explode('.', $art->start_price)[1] : '') }} ETH</h2>
-                                </a>
-                                @if ($art->owner)
-                                    <div class="text-right">
-                                        <a href="{{ route('art.detail', $art->id) }}">
-                                            <h3 class="text-emerald-400 font-medium">Owned by</h3>
-                                        </a>
-                                        <a href="{{ route('user.profile', '@'.$art->owner->nickname) }}" class="text-gray-300 hover:text-white">
-                                            <h2 class="text-md leading-8 font-semibold">{{ "@".$art->owner->nickname }}</h2>
-                                        </a>
-                                    </div>
-                                @endif
-                            </div>
+                    @else
+                        <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-8">
+                            @foreach ($user->creator->arts as $art)
+                                <x-art-card :art="$art" />
+                            @endforeach
                         </div>
-                    @endforeach
-                </div>
-            </section>
+                    @endif
+                </section>
+            @endif
         </div>
     </main>
+    <script src="{{ asset('js/profile.js') }}"></script>
 @endsection

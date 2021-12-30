@@ -44,5 +44,15 @@ class UserSeeder extends Seeder
             'role_id' => 2,
             'created_at' => now()
         ]);
+        DB::table('users')->insert([
+            'name' => 'Only User',
+            'email' => 'only.user@mail.com',
+            'nickname' => 'only_user',
+            'password' => bcrypt('user123'),
+            'profile_image' => 'profile/eb581017-2401-4e2f-a3b4-65b725555e46.jpg',
+            'email_verified_at' => now(),
+            'role_id' => 1,
+            'created_at' => now()
+        ]);
     }
 }
