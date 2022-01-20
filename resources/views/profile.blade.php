@@ -14,7 +14,7 @@
                     class="w-full h-full rounded-full overflow-hidden">
             </div>
         </div>
-        <div class="w-full text-center pt-20 bg-white">
+        <div class="w-full px-6 sm:px-8 sm:text-center pt-20 bg-white">
             <h1 class="text-3xl font-bold mt-2">{{ $user->name }}</h1>
             <div class="mt-1">
                 <span
@@ -23,7 +23,7 @@
             @can('profile-owner', $user)
                 @can('verify')
                     <button type="button"
-                        class="mt-1 inline-flex items-center px-2 py-1 border border-transparent text-sm font-medium rounded-md shadow-sm text-red-500 hover:text-red-700 focus:outline-none"
+                        class="mt-2 inline-flex items-center px-2 py-1 border border-transparent text-sm font-medium rounded-md shadow-sm bg-red-400 text-white hover:bg-red-600 focus:outline-none"
                         onclick="event.preventDefault(); document.getElementById('resend-verification-form').submit();">
                         <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                             aria-hidden="true">
@@ -39,7 +39,7 @@
                     </form>
                 @else
                     <div
-                        class="mt-1 inline-flex items-center px-2 py-1 border border-transparent text-sm font-medium rounded-md shadow-sm text-emerald-500 focus:outline-none">
+                        class="mt-2 inline-flex items-center text-sm font-medium text-emerald-500 focus:outline-none">
                         <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                             aria-hidden="true">
                             <path fill-rule="evenodd"
@@ -90,8 +90,18 @@
             </div>
             @can('can-request', $user)
                 <a href="{{ route('request.creator') }}"
-                    class="sm:ml-4 mb-4 sm:mb-0 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-emerald-400 hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400">
+                    class="w-full sm:w-fit sm:ml-4 mb-4 sm:mb-0 inline-flex items-center px-4 py-2 border border-emerald-500 sm:border-transparent text-base font-medium rounded-md sm:shadow-sm text-emerald-700 sm:text-white hover:bg-gray-100 sm:bg-emerald-400 sm:hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
+                    </svg>
                     Upgrade to Creator
+                </a>
+                <a href="{{ route('my.request') }}"
+                    class="w-full sm:w-fit sm:ml-4 mb-2 sm:mb-0 inline-flex items-center px-4 py-2 border border-emerald-500 sm:border-transparent text-base font-medium rounded-md sm:shadow-sm text-emerald-700 sm:text-white hover:bg-gray-100 sm:bg-emerald-400 sm:hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                    </svg>
+                    My Requests
                 </a>
             @endcan
         </nav>

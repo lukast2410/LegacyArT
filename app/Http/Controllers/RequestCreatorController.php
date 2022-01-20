@@ -18,6 +18,13 @@ class RequestCreatorController extends Controller
         return view('view_request');
     }
 
+    public function my_request()
+    {
+        $requests = RequestCreator::where('user_id', Auth::user()->id)->get();
+
+        return view('view_request')->with(compact(['requests']));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

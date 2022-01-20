@@ -49,6 +49,7 @@ Route::middleware(['auth', 'verified', 'creator'])->group(function() {
 Route::middleware(['auth', 'verified', 'user.only'])->group(function() {
   Route::get('/request-creator', [RequestCreatorController::class, 'create'])->name('request.creator');
   Route::post('/request', [RequestCreatorController::class, 'store'])->name('request');
+  Route::get('/my-request', [RequestCreatorController::class, 'my_request'])->name('my.request');
 });
 
 // Admin Only

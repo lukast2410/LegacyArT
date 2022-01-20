@@ -52,5 +52,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('cancel-bid', function($user, $bid){
             return $user && $user->id == $bid->user->id && $bid->status == 'ongoing';
         });
+
+        Gate::define('modify-request', function($user){
+            return $user && $user->role->name === "admin";
+        });
     }
 }
