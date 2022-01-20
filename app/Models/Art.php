@@ -10,6 +10,9 @@ class Art extends Model
     use HasFactory;
     public $timestamps = true;
     protected $keyType = 'string';
+    protected $fillable = [
+        'id', 'creator_id', 'owner_id', 'name', 'art_image', 'description', 'start_price', 'sold_price'
+    ];
 
     public function creator(){
         return $this->belongsTo(Creator::class, 'creator_id');

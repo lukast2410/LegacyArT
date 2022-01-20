@@ -13,8 +13,8 @@
                 </label>
                 <div class="mt-1">
                     <textarea id="reason" name="reason" rows="5"
-                        class="@error('reason') border-red-500 @enderror shadow-sm focus:border-emerald-500 block w-full sm:text-sm border-2 border-gray-300 rounded-md outline-none px-2 py-1.5"
-                        autofocus></textarea>
+                        class="@error('reason') border-red-500 @enderror shadow-sm focus:border-emerald-400 block w-full sm:text-sm border-2 border-gray-200 rounded-md outline-none px-2 py-1.5"
+                        autofocus value="{{ old('reason') }}"></textarea>
                 </div>
                 <p class="mt-2 text-sm text-gray-500">Write a few reasons why you want to be a creator.</p>
 
@@ -73,7 +73,7 @@
                 </label>
                 <div class="mt-1">
                     <textarea id="bio" name="bio" rows="5"
-                        class="@error('bio') border-red-500 @enderror shadow-sm focus:border-emerald-500 block w-full sm:text-sm border-2 border-gray-300 rounded-md outline-none px-2 py-1.5"></textarea>
+                        class="@error('bio') border-red-500 @enderror shadow-sm focus:border-emerald-400 block w-full sm:text-sm border-2 border-gray-200 rounded-md outline-none px-2 py-1.5" value="{{ old('bio') }}"></textarea>
                 </div>
                 <p class="mt-2 text-sm text-gray-500">Write a few sentences about yourself.</p>
 

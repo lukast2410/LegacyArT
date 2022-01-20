@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Creator;
 use App\Models\RequestCreator;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,12 +17,14 @@ class RequestCreatorController extends Controller
      */
     public function index()
     {
-        return view('view_request');
+        $requests = RequestCreator::orderBy('created_at', 'desc')->paginate(20);
+
+        return view('view_request')->with(compact('requests'));
     }
 
     public function my_request()
     {
-        $requests = RequestCreator::where('user_id', Auth::user()->id)->get();
+        $requests = RequestCreator::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(20);
 
         return view('view_request')->with(compact(['requests']));
     }
@@ -80,6 +84,34 @@ class RequestCreatorController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function accept($id)
+    {
+        $req = RequestCreator::find($id);
+        $req->status = 'Accepted';
+        $req->save();
+        
+        $creator = Creator::create([
+            'user_id' => $req->user_id,
+            'banner_image' => $req->banner_image,
+            'bio' => $req->bio
+        ]);
+        
+        $user = User::find($req->user_id);
+        $user->role_id = 2;
+        $user->save();
+
+        return redirect()->back();
+    }
+
+    public function reject($id)
+    {
+        $req = RequestCreator::find($id);
+        $req->status = 'Rejected';
+        $req->save();
+
+        return redirect()->back();
     }
 
     /**

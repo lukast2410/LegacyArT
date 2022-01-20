@@ -21,6 +21,6 @@ class CreatorMiddleware
             return $next($request);
         }
 
-        return redirect('home');
+        return redirect(route('home'));
     }
 }

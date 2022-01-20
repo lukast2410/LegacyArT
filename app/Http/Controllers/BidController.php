@@ -26,7 +26,10 @@ class BidController extends Controller
 
     public function revenue()
     {
-        return view('revenue');
+        $bids = Bid::orderBy('created_at', 'desc')->paginate(20);
+        $total = Bid::sum('fee');
+
+        return view('revenue')->with(compact(['bids', 'total']));
     }
 
     public function transaction_history()

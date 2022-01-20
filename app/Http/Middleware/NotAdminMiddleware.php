@@ -18,7 +18,7 @@ class NotAdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(Auth::user()->role->name === "admin"){
-            return redirect('home');
+            return redirect(route('home'));
         }
         return $next($request);
     }

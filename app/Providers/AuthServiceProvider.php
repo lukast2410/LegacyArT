@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user && $user->role->name === "creator";
         });
 
-        Gate::define('view-revenue', function($user){
+        Gate::define('admin', function($user){
             return $user->role->name === "admin";
         });
 
@@ -53,8 +53,8 @@ class AuthServiceProvider extends ServiceProvider
             return $user && $user->id == $bid->user->id && $bid->status == 'ongoing';
         });
 
-        Gate::define('modify-request', function($user){
-            return $user && $user->role->name === "admin";
+        Gate::define('modify-request', function($user, $request){
+            return $user && $user->role->name === "admin" && $request->status === "Pending";
         });
     }
 }

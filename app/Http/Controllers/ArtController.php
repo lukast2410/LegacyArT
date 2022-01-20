@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Art;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ArtController extends Controller
 {
@@ -35,7 +37,25 @@ class ArtController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'start_price' => ['required', 'min:0.01'],
+            'description' => ['required', 'string', 'min:10'],
+            'art_image' => ['required', 'image', 'file', 'max:5120'],
+        ]);
+
+        $art_image = $request['art_image']->store('art');
+        $user = Auth::user();
+        Art::create([
+            'id' => Str::orderedUuid(),
+            'creator_id' => $user->creator->id,
+            'name' => $request['name'],
+            'art_image' => $art_image,
+            'description' => $request['description'],
+            'start_price' => $request['start_price'],
+        ]);
+
+        return redirect(route('user.profile', '@'.$user->nickname));
     }
 
     /**

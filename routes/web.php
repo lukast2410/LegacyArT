@@ -43,6 +43,7 @@ Route::middleware(['auth', 'not.admin'])->group(function() {
 Route::middleware(['auth', 'verified', 'creator'])->group(function() {
   Route::get('/create-art', [ArtController::class, 'create'])->name('create.art');
   Route::post('/accept-offer', [ArtController::class, 'accept_offer'])->name('accept.offer');
+  Route::post('/create-art', [ArtController::class, 'store'])->name('create.art');
 });
 
 // User Only
@@ -56,4 +57,6 @@ Route::middleware(['auth', 'verified', 'user.only'])->group(function() {
 Route::middleware(['auth', 'admin'])->group(function() {
   Route::get('/revenue', [BidController::class, 'revenue'])->name('revenue');
   Route::get('/view-requests', [RequestCreatorController::class, 'index'])->name('view.requests');
+  Route::put('/reject-request/{id}', [RequestCreatorController::class, 'reject'])->name('reject.request');
+  Route::put('/accept-request/{id}', [RequestCreatorController::class, 'accept'])->name('accept.request');
 });

@@ -30,10 +30,14 @@
                         </a>
                         <div class="hidden md:ml-10 md:flex md:space-x-8">
                             @auth
-                                @can('view-revenue')
-                                    <a href="#"
+                                @can('admin')
+                                    <a href="{{ route('revenue') }}"
                                         class="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 font-bold">
-                                        View Revenue
+                                        Revenues
+                                    </a>
+                                    <a href="{{ route('view.requests') }}"
+                                        class="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 font-bold">
+                                        Requests
                                     </a>
                                 @else
                                     <a href="{{ route('bid.ongoing') }}"
@@ -175,8 +179,8 @@
                         </a>
                     </div>
                 @else
-                    @can('view-revenue')
-                        <div class="h-16 w-11/12 mx-auto shadow-lg rounded-lg bg-white grid grid-cols-3">
+                    @can('admin')
+                        <div class="h-16 w-11/12 mx-auto shadow-lg rounded-lg bg-white grid grid-cols-4">
                             <a href="{{ route('home') }}"
                                 class="hover:bg-emerald-100 transition inline-grid place-items-center my-2 ml-2 mr-1 rounded-md text-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -191,6 +195,14 @@
                                     stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </a>
+                            <a href="{{ route('view.requests') }}"
+                                class="hover:bg-emerald-100 transition inline-grid place-items-center my-2 mr-2 ml-1 rounded-md text-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
                                 </svg>
                             </a>
                             <a href="{{ route('user.profile', '@' . Auth::user()->nickname) }}"

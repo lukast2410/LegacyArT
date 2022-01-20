@@ -58,10 +58,12 @@
                         </a>
                     @endif
                     @cannot('profile-owner', $art->creator->user)
-                        <button id="bid-button" type="button"
-                            class="mt-4 inline-flex justify-center items-center w-full lg:max-w-lg px-6 py-3 border border-transparent text-lg font-medium rounded-lg shadow-sm text-white transition-all bg-emerald-800 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none">
-                            Place a bid
-                        </button>
+                        @cannot('admin')
+                            <button id="bid-button" type="button"
+                                class="mt-4 inline-flex justify-center items-center w-full lg:max-w-lg px-6 py-3 border border-transparent text-lg font-medium rounded-lg shadow-sm text-white transition-all bg-emerald-800 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none">
+                                Place a bid
+                            </button>
+                        @endcannot
                     @else
                         @if ($bids->count() > 0)
                             <form action="{{ route('accept.offer') }}" method="POST">
@@ -112,7 +114,7 @@
                                         </a>
                                     </h4>
                                     <p class="mt-1 font-medium text-gray-500">
-                                        {{ date_format($bid->created_at, 'M d, Y') . ' at ' . date_format($bid->created_at, 'h:i A') }}
+                                        {{ date_format($bid->created_at, 'M d, Y') . ' at ' . date_format(\Carbon\Carbon::parse($bid->created_at)->addHour(7), 'h:i A') }}
                                         </h3>
                                     </p>
                                 </div>
