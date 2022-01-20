@@ -47,8 +47,29 @@ class ArtController extends Controller
     public function show($id)
     {
         $art = Art::find($id);
+        $bids = $art->bids()->orderBy('amount', 'desc')->get();
         
-        return view('art')->with(compact('art'));
+        return view('art')->with(compact(['art', 'bids']));
+    }
+
+    public function accept_offer(Request $request){
+        $id = $request['id'];
+
+        $art = Art::find($id);
+        $bids = $art->bids()->orderBy('amount', 'desc')->get();
+
+        $bids[0]->status = 'accepted';
+        $bids[0]->save();
+        for($i=1; $i<$bids->count() ; $i++) { 
+            $bids[$i]->status = 'rejected';
+            $bids[$i]->save();
+        }
+
+        $art->owner_id = $bids[0]->user_id;
+        $art->sold_price = $bids[0]->amount;
+        $art->save();
+
+        return redirect()->back();
     }
 
     /**

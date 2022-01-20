@@ -26,12 +26,21 @@
                 </div>
                 <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0">
                     <div class="space-y-1 sm:pr-4 sm:mr-4 sm:border-r-2 border-green-300">
-                        <h3 class="text-lg font-semibold text-emerald-600">
-                            Start bid
-                        </h3>
-                        <h2 class="text-2xl sm:text-4xl font-semibold text-emerald-800 leading whitespace-nowrap">
-                            {{ number_format(floor($newest->start_price)) . (count(explode('.', $newest->start_price)) == 2 ? '.'.explode('.', $newest->start_price)[1] : '') }}
-                            ETH</h2>
+                        @if ($currentBid)
+                            <h3 class="text-lg font-semibold text-emerald-600">
+                                Current bid
+                            </h3>
+                            <h2 class="text-2xl sm:text-4xl font-semibold text-emerald-800 leading whitespace-nowrap">
+                                {{ number_format(floor($currentBid->amount)) . (count(explode('.', $currentBid->amount)) == 2 ? '.' . explode('.', $currentBid->amount)[1] : '') }}
+                                ETH</h2>
+                        @else
+                            <h3 class="text-lg font-semibold text-emerald-600">
+                                Start bid
+                            </h3>
+                            <h2 class="text-2xl sm:text-4xl font-semibold text-emerald-800 leading whitespace-nowrap">
+                                {{ number_format(floor($newest->start_price)) . (count(explode('.', $newest->start_price)) == 2 ? '.' . explode('.', $newest->start_price)[1] : '') }}
+                                ETH</h2>
+                        @endif
                     </div>
                     <div class="space-y-1">
                         <h3 class="text-lg font-semibold text-emerald-600">
@@ -82,7 +91,7 @@
             </h1>
             <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 xl:gap-8 my-12">
                 @foreach ($arts as $art)
-                    <x-art-card :art="$art"/>
+                    <x-art-card :art="$art" />
                 @endforeach
             </div>
         </div>

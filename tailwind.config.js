@@ -11,6 +11,7 @@ module.exports = {
         emerald: colors.emerald,
         slate: colors.slate,
         'black-trans': '#2e2e2e45',
+        'black-trans-60': '#2e2e2e60',
         'white-trans': '#91919140',
       },
       fontSize: {
@@ -30,6 +31,7 @@ module.exports = {
       },
       maxHeight: {
         'screen-60': '60vh',
+        'screen-75': '75vh',
       },
       minHeight: {
         'full-without-nav': 'calc(100vh - 4.5rem)',

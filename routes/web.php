@@ -35,16 +35,20 @@ Route::middleware(['auth', 'not.admin'])->group(function() {
   Route::get('/bid/ongoing', [BidController::class, 'index'])->name('bid.ongoing');
   Route::get('/bid/history', [BidController::class, 'history'])->name('bid.history');
   Route::get('/transaction-history', [BidController::class, 'transaction_history'])->name('transaction.history');
+  Route::post('/submit-bid', [BidController::class, 'store'])->name('submit.bid');
+  Route::delete('/cancel-bid/{id}', [BidController::class, 'destroy'])->name('cancel.bid');
 });
 
 // Only for creator
 Route::middleware(['auth', 'verified', 'creator'])->group(function() {
   Route::get('/create-art', [ArtController::class, 'create'])->name('create.art');
+  Route::post('/accept-offer', [ArtController::class, 'accept_offer'])->name('accept.offer');
 });
 
 // User Only
 Route::middleware(['auth', 'verified', 'user.only'])->group(function() {
   Route::get('/request-creator', [RequestCreatorController::class, 'create'])->name('request.creator');
+  Route::post('/request', [RequestCreatorController::class, 'store'])->name('request');
 });
 
 // Admin Only

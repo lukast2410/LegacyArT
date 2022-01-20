@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Art;
 use App\Models\Bid;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BidController extends Controller
 {
@@ -50,7 +52,23 @@ class BidController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'artId' => 'required',
+            'bid' => 'required|min:0',
+            'agree' => 'required|accepted'
+        ]);
+
+        $amount = $request['bid'];
+        $fee = $amount * 0.5 / 100.0;
+        $art = Art::find($request['artId']);
+        $bid = Bid::create([
+            'user_id' => Auth::user()->id,
+            'art_id' => $request['artId'],
+            'amount' => $request['bid'],
+            'fee' => $fee,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -93,8 +111,11 @@ class BidController extends Controller
      * @param  \App\Models\Bid  $bid
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bid $bid)
+    public function destroy($id)
     {
-        //
+        $bid = Bid::find($id);
+        $bid->delete();
+
+        return redirect()->back();
     }
 }

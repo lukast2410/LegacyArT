@@ -217,7 +217,7 @@
                             </a>
                             <a href="{{ route('bid.ongoing') }}"
                                 class="hover:bg-emerald-100 transition inline-grid place-items-center my-2 mr-2 ml-1 rounded-md text-gray-500">
-                                <x-ri-auction-line class="h-6 w-6" />
+                                <img src="/images/auction.svg" alt="Auction" class="h-6 w-6">
                             </a>
                             <a href="{{ route('transaction.history') }}"
                                 class="hover:bg-emerald-100 transition inline-grid place-items-center my-2 mr-2 ml-1 rounded-md text-gray-500">
@@ -300,7 +300,7 @@
                 </div>
                 <div class="mt-8 md:mt-0 md:order-1">
                     <p class="text-center text-md text-gray-700 font-bold">
-                        &copy; 2020 Workflow, Inc. All rights reserved.
+                        &copy; 2022 Lukas Tanto, Inc. All rights reserved.
                     </p>
                 </div>
             </div>

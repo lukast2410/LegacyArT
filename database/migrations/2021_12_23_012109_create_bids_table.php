@@ -21,7 +21,7 @@ class CreateBidsTable extends Migration
             $table->foreign('art_id')->references('id')->on('art')->cascadeOnDelete()->cascadeOnUpdate();
             $table->unsignedDouble('amount');
             $table->unsignedDouble('fee');
-            $table->string('status');
+            $table->string('status')->default('ongoing');
             $table->timestamps();
             $table->softDeletes();
         });

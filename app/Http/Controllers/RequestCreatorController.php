@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RequestCreator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RequestCreatorController extends Controller
 {
@@ -34,7 +36,21 @@ class RequestCreatorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'reason' => ['required', 'string', 'min:20'],
+            'bio' => ['required', 'string', 'min:10'],
+            'banner' => ['required', 'image', 'file', 'max:5120'],
+        ]);
+
+        $banner_image = $request['banner']->store('banner');
+        RequestCreator::create([
+            'user_id' => Auth::user()->id,
+            'banner_image' => $banner_image,
+            'bio' => $request['bio'],
+            'reason' => $request['reason']
+        ]);
+
+        return redirect(route('user.profile', '@' . Auth::user()->nickname));
     }
 
     /**

@@ -19,6 +19,8 @@ class CreateRequestCreatorsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('banner_image');
             $table->text('bio');
+            $table->text('reason');
+            $table->string('status')->default('Pending');
             $table->timestamps();
         });
     }

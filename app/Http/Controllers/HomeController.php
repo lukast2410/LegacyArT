@@ -28,7 +28,8 @@ class HomeController extends Controller
         $creators = Creator::inRandomOrder()->get();
         $arts = Art::whereNull('owner_id')->inRandomOrder()->limit(24)->get();
         $newest = Art::whereNull('owner_id')->inRandomOrder()->first();
+        $currentBid = $newest->bids()->orderBy('amount', 'desc')->first();
 
-        return view('home')->with(compact(['creators', 'arts', 'newest']));
+        return view('home')->with(compact(['creators', 'arts', 'newest', 'currentBid']));
     }
 }

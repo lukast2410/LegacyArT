@@ -114,7 +114,7 @@
                         @if (Route::has('google.login'))
                             <a href="{{ route('google.login') }}"
                                 class="flex items-center justify-center w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-slate-400 bg-white border-2 border-slate-200 hover:bg-slate-200">
-                                <x-grommet-google class="h-5 w-5 mr-2" />
+                                <img src="/images/google.png" alt="Google" class="h-5 w-5 mr-2">
                                 {{ __('Continue with Google') }}
                             </a>
                         @endif
