@@ -15,7 +15,7 @@
                 </div>
             </div>
         @else
-            <h1 class="w-full max-w-screen-lg mx-auto text-4xl text-emerald-600 font-medium leading-tight">
+            <h1 class="w-full max-w-screen-lg mx-auto text-2xl sm:text-4xl text-emerald-600 font-medium leading-tight">
                 @can('admin')
                     All Requests
                 @else

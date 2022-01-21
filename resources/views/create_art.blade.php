@@ -6,7 +6,7 @@
             enctype="multipart/form-data">
             @csrf
 
-            <h1 class="text-4xl font-medium text-emerald-600">Create Art</h1>
+            <h1 class="text-2xl sm:text-4xl font-medium text-emerald-600">Create Art</h1>
 
             <h4 class="block text-sm font-medium text-gray-700 mt-8">Art Image</h4>
             <div class="mt-1 flex flex-wrap items-center justify-start @error('art_image') border-red-500 @enderror">

@@ -16,12 +16,18 @@ class BidController extends Controller
      */
     public function index()
     {
-        return view('bid_ongoing');
+        $bids = Bid::where('user_id', Auth::user()->id)->where('status', 'ongoing')->orderByDesc('created_at')->paginate(20);
+        $history = Bid::where('user_id', Auth::user()->id)->where('status', '!=', 'ongoing')->withTrashed()->count();
+
+        return view('bid_ongoing')->with(compact(['bids', 'history']));
     }
 
     public function history()
     {
-        return view('bid_history');
+        $bids = Bid::withTrashed()->where('user_id', Auth::user()->id)->where('status', '!=', 'ongoing')->orderByDesc('created_at')->paginate(20);
+        $ongoing = Bid::where('user_id', Auth::user()->id)->where('status', 'ongoing')->count();
+
+        return view('bid_history')->with(compact(['bids', 'ongoing']));
     }
 
     public function revenue()
@@ -34,7 +40,9 @@ class BidController extends Controller
 
     public function transaction_history()
     {
-        return view('transaction_history');
+        $transactions = Bid::where('user_id', Auth::user()->id)->where('status', 'accepted')->orderByDesc('created_at')->paginate(20);
+
+        return view('transaction_history')->with(compact(['transactions']));
     }
 
     /**
@@ -117,6 +125,8 @@ class BidController extends Controller
     public function destroy($id)
     {
         $bid = Bid::find($id);
+        $bid->status = 'canceled';
+        $bid->save();
         $bid->delete();
 
         return redirect()->back();

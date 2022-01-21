@@ -5,7 +5,7 @@
         <form class="rounded-lg shadow-md my-8 bg-white p-8" action="{{ route('request') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <h1 class="text-4xl font-medium text-emerald-600">Apply Request</h1>
+            <h1 class="text-2xl sm:text-4xl font-medium text-emerald-600">Apply Request</h1>
 
             <div class="mt-8">
                 <label for="reason" class="block text-sm font-medium text-gray-700">
