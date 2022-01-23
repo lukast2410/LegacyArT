@@ -1,7 +1,7 @@
 <div
     class="h-full min-h-min flex flex-col bg-gray-50 rounded-lg overflow-hidden shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
     <a class="min-h-3/5" href="{{ route('art.detail', $art->id) }}">
-        <img class="w-full h-full object-cover bg-emerald-100" src="{{ asset('storage/' . $art->art_image) }}"
+        <img class="w-full h-full object-cover object-center bg-emerald-100" src="{{ asset('storage/' . $art->art_image) }}"
             alt="Art Image">
     </a>
     <div class="w-full flex-1 pt-3 px-5 pb-5">
@@ -10,7 +10,7 @@
         <div class="flex mt-3">
             <a href="{{ route('user.profile', '@' . $art->creator->user->nickname) }}"
                 class="flex space-x-2 items-center text-gray-500 hover:text-gray-700">
-                <img class="h-8 w-8 rounded-full overflow-hidden object-cover"
+                <img class="h-8 w-8 rounded-full overflow-hidden object-cover object-center"
                     src="{{ asset('storage/' . $art->creator->user->profile_image) }}" alt="Creator Profile">
                 <span class="font-bold">{{ '@' . $art->creator->user->nickname }}</span>
             </a>

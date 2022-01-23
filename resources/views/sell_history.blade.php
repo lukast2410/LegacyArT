@@ -3,10 +3,10 @@
 @section('content')
     <main class="w-full max-w-screen-lg lg:mx-auto px-6 sm:px-8 py-6">
         <nav
-            class="mb-6 w-full max-w-screen-2xl mx-auto flex sm:space-x-2 items-start sm:items-center flex-col-reverse sm:flex-row">
+            class="mb-6 w-full max-w-screen-2xl mx-auto flex sm:space-x-2  items-start sm:items-center flex-col-reverse sm:flex-row">
             <div class="flex space-x-2 flex-1 w-full sm:w-min">
-                <div
-                    class="flex flex-1 sm:flex-none items-center justify-center space-x-2 px-4 py-3 cursor-pointer border-b-4 border-transparent border-emerald-500">
+                <a href="{{ route('transaction.history') }}"
+                    class="flex flex-1 sm:flex-none items-center justify-center space-x-2 px-4 py-3 cursor-pointer border-b-4 border-gray-200 hover:border-gray-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -14,21 +14,19 @@
                     </svg>
                     <span class="font-semibold text-lg">Buy</span>
                     <span
+                        class="bg-emerald-100 text-emerald-700 py-0.5 px-2 rounded-full text-xs font-medium inline-block">{{ $buy }}</span>
+                </a>
+                <div
+                    class="flex flex-1 sm:flex-none items-center justify-center space-x-2 px-4 py-3 cursor-pointer border-b-4 border-emerald-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="font-semibold text-lg">Sell</span>
+                    <span
                         class="bg-emerald-100 text-emerald-700 py-0.5 px-2 rounded-full text-xs font-medium inline-block">{{ $transactions->count() }}</span>
                 </div>
-                @can('can-create')
-                    <a href="{{ route('sell.history') }}"
-                        class="flex flex-1 sm:flex-none items-center justify-center space-x-2 px-4 py-3 cursor-pointer border-b-4 border-gray-200 hover:border-gray-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span class="font-semibold text-lg">Sell</span>
-                        <span
-                            class="bg-emerald-100 text-emerald-700 py-0.5 px-2 rounded-full text-xs font-medium inline-block">{{ $sell }}</span>
-                    </a>
-                @endcan
             </div>
         </nav>
         @if ($transactions->count() == 0)
@@ -51,7 +49,12 @@
             </div>
             <div class="mt-4 w-full max-w-screen-lg mx-auto bg-white shadow overflow-hidden sm:rounded-md">
                 <ul class="divide-y divide-gray-200">
-                    @foreach ($transactions as $trans)
+                    @foreach ($transactions as $tr)
+                        <?php $trans = $tr
+                            ->bids()
+                            ->orderBy('amount', 'desc')
+                            ->where('status', 'accepted')
+                            ->first(); ?>
                         <li class="block hover:bg-gray-50">
                             <div class="px-4 py-4 sm:px-6">
                                 <div class="flex items-center justify-between">

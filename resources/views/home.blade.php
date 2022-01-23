@@ -19,7 +19,7 @@
                     </h3>
                     <a href="{{ route('user.profile', '@' . $newest->creator->user->nickname) }}"
                         class="block flex items-center p-2 bg-emerald-100 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                        <img class="h-8 w-8 object-cover rounded-full"
+                        <img class="h-8 w-8 object-cover object-center rounded-full"
                             src="{{ asset('storage/' . $newest->creator->user->profile_image) }}" alt="Owner Profile">
                         <span class="text-emerald-800 font-bold px-3">{{ '@' . $newest->creator->user->nickname }}</span>
                     </a>
@@ -73,7 +73,7 @@
                 @foreach ($creators as $creator)
                     <a href="{{ route('user.profile', '@' . $creator->user->nickname) }}"
                         class="block relative bg-white rounded-lg overflow-hidden shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                        <img class="w-full h-full object-cover"
+                        <img class="w-full h-full object-cover object-center"
                             src="{{ asset('storage/' . $creator->user->profile_image) }}" alt="Creator Profile">
                         <div
                             class="absolute left-0 top-0 w-full h-full bg-black-trans flex items-end text-gray-50 font-semibold">

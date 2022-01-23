@@ -92,7 +92,7 @@
                                                         class="h-full w-auto object-cover">
                                                 @else
                                                     <img src="{{ asset('storage/' . Auth::user()->profile_image) }}" alt=""
-                                                        class="h-full w-auto object-cover">
+                                                        class="h-full w-auto object-cover object-center">
                                                 @endcan
                                             </span>
                                         </button>
@@ -212,7 +212,7 @@
                                         <img src="{{ Auth::user()->profile_image }}" alt="" class="h-full w-auto object-cover">
                                     @else
                                         <img src="{{ asset('storage/' . Auth::user()->profile_image) }}" alt=""
-                                            class="h-full w-auto object-cover">
+                                            class="h-full w-auto object-cover object-center">
                                     @endcan
                                 </div>
                             </a>
@@ -246,7 +246,7 @@
                                         <img src="{{ Auth::user()->profile_image }}" alt="" class="h-full w-auto object-cover">
                                     @else
                                         <img src="{{ asset('storage/' . Auth::user()->profile_image) }}" alt=""
-                                            class="h-full w-auto object-cover">
+                                            class="h-full w-auto object-cover object-center">
                                     @endcan
                                 </div>
                             </a>

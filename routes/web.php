@@ -44,6 +44,7 @@ Route::middleware(['auth', 'verified', 'creator'])->group(function() {
   Route::get('/create-art', [ArtController::class, 'create'])->name('create.art');
   Route::post('/accept-offer', [ArtController::class, 'accept_offer'])->name('accept.offer');
   Route::post('/create-art', [ArtController::class, 'store'])->name('create.art');
+  Route::get('/sell-history', [BidController::class, 'sell_history'])->name('sell.history');
 });
 
 // User Only

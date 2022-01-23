@@ -41,8 +41,20 @@ class BidController extends Controller
     public function transaction_history()
     {
         $transactions = Bid::where('user_id', Auth::user()->id)->where('status', 'accepted')->orderByDesc('created_at')->paginate(20);
+        $sell = 0;
+        if(Auth::user()->creator){
+            $sell = Art::where('creator_id', Auth::user()->creator->id)->whereNotNull('sold_price')->count();
+        }
 
-        return view('transaction_history')->with(compact(['transactions']));
+        return view('transaction_history')->with(compact(['transactions', 'sell']));
+    }
+
+    public function sell_history()
+    {
+        $transactions = Art::where('creator_id', Auth::user()->creator->id)->whereNotNull('sold_price')->paginate(20);
+        $buy = Bid::where('user_id', Auth::user()->id)->where('status', 'accepted')->count();
+
+        return view('sell_history')->with(compact(['transactions', 'buy']));
     }
 
     /**

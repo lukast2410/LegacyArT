@@ -16,7 +16,7 @@
                     </h3>
                     <a href="{{ route('user.profile', '@' . $art->creator->user->nickname) }}"
                         class="mt-1 w-fit block flex items-center p-2 bg-emerald-100 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                        <img class="h-8 w-8 object-cover rounded-full"
+                        <img class="h-8 w-8 object-cover object-center rounded-full"
                             src="{{ asset('storage/' . $art->creator->user->profile_image) }}" alt="Owner Profile">
                         <span class="text-emerald-800 font-bold px-3">{{ '@' . $art->creator->user->nickname }}</span>
                     </a>
@@ -29,7 +29,7 @@
                     </h3>
                     <a href="{{ route('user.profile', '@' . $art->owner->nickname) }}"
                         class="mt-1 w-fit block flex items-center p-2 bg-emerald-100 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                        <img class="h-8 w-8 object-cover rounded-full"
+                        <img class="h-8 w-8 object-cover object-center rounded-full"
                             src="{{ asset('storage/' . $art->owner->profile_image) }}" alt="Owner Profile">
                         <span class="text-emerald-800 font-bold px-3">{{ '@' . $art->owner->nickname }}</span>
                     </a>
@@ -52,7 +52,7 @@
                         </h2>
                         <a href="{{ route('user.profile', '@' . $bids[0]->user->nickname) }}"
                             class="mt-4 w-fit block flex items-center transition-all text-emerald-600 hover:text-emerald-800">
-                            <img class="h-5 w-5 object-cover rounded-full"
+                            <img class="h-5 w-5 object-cover object-center rounded-full"
                                 src="{{ asset('storage/' . $bids[0]->user->profile_image) }}" alt="Owner Profile">
                             <span class="font-semibold px-2">{{ '@' . $bids[0]->user->nickname }}</span>
                         </a>
@@ -96,9 +96,43 @@
                             Latest bids
                         </h3>
                     </div>
+                    @if ($art->sold_price)
+                        <?php
+                        $bid = $art
+                            ->bids()
+                            ->orderBy('amount', 'desc')
+                            ->where('status', 'accepted')
+                            ->first();
+                        ?>
+                        <div class="shadow-md rounded-lg p-4 flex items-start sm:items-center mb-3 relative">
+                            <img class="h-8 w-8 object-cover object-center rounded-full"
+                                src="{{ asset('storage/' . $bid->user->profile_image) }}" alt="Bid User Profile">
+                            <div class="flex-1 flex items-center justify-between ml-4 mr-10 sm:mr-0">
+                                <div>
+                                    <h4 class="block sm:hidden text-lg font-semibold text-emerald-900 leading-4 mb-1">
+                                        {{ number_format(floor($bid->amount)) . (count(explode('.', $bid->amount)) == 2 ? '.' . explode('.', $bid->amount)[1] : '') }}
+                                        ETH
+                                    </h4>
+                                    <h4 class="font-semibold">
+                                        Auction won by
+                                        <a href="{{ route('user.profile', '@' . $bid->user->nickname) }}"
+                                            class="mt-1 text-emerald-600 hover:text-emerald-800">
+                                            <span class="font-semibold">{{ '@' . $bid->user->nickname }}</span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div class="hidden sm:flex flex-col justify-center items-end">
+                                    <h4 class="text-lg font-semibold text-emerald-900 whitespace-nowrap">
+                                        {{ number_format(floor($bid->amount)) . (count(explode('.', $bid->amount)) == 2 ? '.' . explode('.', $bid->amount)[1] : '') }}
+                                        ETH
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                     @foreach ($bids as $bid)
                         <div class="shadow-md rounded-lg p-4 flex items-start sm:items-center mb-3 relative">
-                            <img class="h-8 w-8 object-cover rounded-full"
+                            <img class="h-8 w-8 object-cover object-center rounded-full"
                                 src="{{ asset('storage/' . $bid->user->profile_image) }}" alt="Bid User Profile">
                             <div class="flex-1 flex items-center justify-between ml-4 mr-10 sm:mr-0">
                                 <div>
