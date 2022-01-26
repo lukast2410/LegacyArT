@@ -51,7 +51,7 @@
                                         d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                                 </svg>
                                 <div class="absolute top-0 left-0 w-full h-full z-10 overflow-hidden">
-                                    <img id="profile_preview" src="" alt="" class="h-full w-auto object-cover">
+                                    <img id="profile_preview" src="" alt="" class="h-full object-cover">
                                 </div>
                                 <div
                                     class="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black-trans opacity-0 hover:opacity-100 z-20">
@@ -193,6 +193,7 @@
                 let reader = new FileReader();
                 reader.onload = (e) => {
                     $('#profile_preview').attr('src', e.target.result);
+                    $('#profile_preview').addClass('w-full')
                 }
                 reader.readAsDataURL(this.files[0]);
             });

@@ -20,7 +20,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                         <div class="absolute top-0 left-0 w-full h-full z-10 overflow-hidden">
-                            <img id="art_preview" src="" alt="" class="h-full w-auto object-cover">
+                            <img id="art_preview" src="" alt="" class="h-full object-cover">
                         </div>
                         <div
                             class="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black-trans opacity-0 hover:opacity-100 z-20">
@@ -104,6 +104,7 @@
                 let reader = new FileReader();
                 reader.onload = (e) => {
                     $('#art_preview').attr('src', e.target.result);
+                    $('#art_preview').addClass('w-full')
                 }
                 reader.readAsDataURL(this.files[0]);
             });

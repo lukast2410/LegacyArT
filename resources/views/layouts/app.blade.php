@@ -89,10 +89,10 @@
                                             <span class="inline-block h-8 w-8 rounded-full overflow-hidden bg-gray-200">
                                                 @can('from-google')
                                                     <img src="{{ Auth::user()->profile_image }}" alt=""
-                                                        class="h-full w-auto object-cover">
+                                                        class="h-full w-full object-cover">
                                                 @else
                                                     <img src="{{ asset('storage/' . Auth::user()->profile_image) }}" alt=""
-                                                        class="h-full w-auto object-cover object-center">
+                                                        class="h-full w-full object-cover object-center">
                                                 @endcan
                                             </span>
                                         </button>
@@ -209,10 +209,10 @@
                                 class="hover:bg-emerald-100 transition inline-grid place-items-center my-2 mr-2 ml-1 rounded-md text-gray-500">
                                 <div class="h-6 w-6 rounded-full overflow-hidden bg-gray-50">
                                     @can('from-google')
-                                        <img src="{{ Auth::user()->profile_image }}" alt="" class="h-full w-auto object-cover">
+                                        <img src="{{ Auth::user()->profile_image }}" alt="" class="h-full w-full object-cover">
                                     @else
                                         <img src="{{ asset('storage/' . Auth::user()->profile_image) }}" alt=""
-                                            class="h-full w-auto object-cover object-center">
+                                            class="h-full w-full object-cover object-center">
                                     @endcan
                                 </div>
                             </a>
@@ -243,10 +243,10 @@
                                 class="hover:bg-emerald-100 transition inline-grid place-items-center my-2 mr-2 ml-1 rounded-md text-gray-500">
                                 <div class="h-6 w-6 rounded-full overflow-hidden bg-gray-50">
                                     @can('from-google')
-                                        <img src="{{ Auth::user()->profile_image }}" alt="" class="h-full w-auto object-cover">
+                                        <img src="{{ Auth::user()->profile_image }}" alt="" class="h-full w-full object-cover">
                                     @else
                                         <img src="{{ asset('storage/' . Auth::user()->profile_image) }}" alt=""
-                                            class="h-full w-auto object-cover object-center">
+                                            class="h-full w-full object-cover object-center">
                                     @endcan
                                 </div>
                             </a>

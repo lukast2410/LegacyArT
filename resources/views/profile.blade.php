@@ -10,8 +10,11 @@
         </div>
         <div class="relative">
             <div class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 h-36 w-36 bg-emerald-300 rounded-full p-1">
-                <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Image"
-                    class="w-full h-full rounded-full overflow-hidden">
+                @can('from-google')
+                    <img src="{{ $user->profile_image }}" alt="Profile Image" class="w-full h-full rounded-full overflow-hidden">
+                @else
+                    <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Image" class="w-full h-full rounded-full overflow-hidden">
+                @endcan
             </div>
         </div>
         <div class="w-full px-6 sm:px-8 sm:text-center pt-20 bg-white">
@@ -88,14 +91,16 @@
                 @endif
             </div>
             @can('can-request', $user)
-                <a href="{{ route('request.creator') }}"
-                    class="w-full sm:w-fit sm:ml-4 mb-4 sm:mb-0 inline-flex items-center px-4 py-2 border border-emerald-500 sm:border-transparent text-base font-medium rounded-md sm:shadow-sm text-emerald-700 sm:text-white hover:bg-gray-100 sm:bg-emerald-400 sm:hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
-                    </svg>
-                    Upgrade to Creator
-                </a>
+                @if ($user->requests()->where('status', 'Pending')->count() == 0)
+                    <a href="{{ route('request.creator') }}"
+                        class="w-full sm:w-fit sm:ml-4 mb-4 sm:mb-0 inline-flex items-center px-4 py-2 border border-emerald-500 sm:border-transparent text-base font-medium rounded-md sm:shadow-sm text-emerald-700 sm:text-white hover:bg-gray-100 sm:bg-emerald-400 sm:hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
+                        </svg>
+                        Upgrade to Creator
+                    </a>
+                @endif
                 <a href="{{ route('my.request') }}"
                     class="w-full sm:w-fit sm:ml-4 mb-2 sm:mb-0 inline-flex items-center px-4 py-2 border border-emerald-500 sm:border-transparent text-base font-medium rounded-md sm:shadow-sm text-emerald-700 sm:text-white hover:bg-gray-100 sm:bg-emerald-400 sm:hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
@@ -104,16 +109,6 @@
                             d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
                     </svg>
                     My Requests
-                </a>
-            @elsecan('admin')
-                <a href="{{ route('view.requests') }}"
-                    class="w-full sm:w-fit sm:ml-4 mb-2 sm:mb-0 inline-flex items-center px-4 py-2 border border-emerald-500 sm:border-transparent text-base font-medium rounded-md sm:shadow-sm text-emerald-700 sm:text-white hover:bg-gray-100 sm:bg-emerald-400 sm:hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                    </svg>
-                    View Requests
                 </a>
             @endcan
         </nav>
