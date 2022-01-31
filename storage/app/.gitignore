@@ -1,3 +1,7 @@
 *
 !public/
+!public/*
+!public/art/*
+!public/banner/*
+!public/profile/*
 !.gitignore
