@@ -35,6 +35,10 @@ Route::middleware(['auth', 'not.admin'])->group(function() {
   Route::get('/bid/ongoing', [BidController::class, 'index'])->name('bid.ongoing');
   Route::get('/bid/history', [BidController::class, 'history'])->name('bid.history');
   Route::get('/transaction-history', [BidController::class, 'transaction_history'])->name('transaction.history');
+});
+
+// For Verified User except admin
+Route::middleware(['auth', 'verified', 'not.admin'])->group(function() {
   Route::post('/submit-bid', [BidController::class, 'store'])->name('submit.bid');
   Route::delete('/cancel-bid/{id}', [BidController::class, 'destroy'])->name('cancel.bid');
 });
