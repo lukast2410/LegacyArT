@@ -5,7 +5,8 @@
         <nav
             class="mb-6 w-full max-w-screen-2xl mx-auto flex sm:space-x-2  items-start sm:items-center flex-col-reverse sm:flex-row">
             <div class="flex space-x-2 flex-1 w-full sm:w-min">
-                <a href="{{ route('transaction.history') }}"
+                {{-- TODO: Redirect to Buy Transaction History Page --}}
+                <a href=""
                     class="flex flex-1 sm:flex-none items-center justify-center space-x-2 px-4 py-3 cursor-pointer border-b-4 border-gray-200 hover:border-gray-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -13,8 +14,9 @@
                             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                     <span class="font-semibold text-lg">Buy</span>
+                    {{-- TODO: Show total of Buy Transaction History --}}
                     <span
-                        class="bg-emerald-100 text-emerald-700 py-0.5 px-2 rounded-full text-xs font-medium inline-block">{{ $buy }}</span>
+                        class="bg-emerald-100 text-emerald-700 py-0.5 px-2 rounded-full text-xs font-medium inline-block">5</span>
                 </a>
                 <div
                     class="flex flex-1 sm:flex-none items-center justify-center space-x-2 px-4 py-3 cursor-pointer border-b-4 border-emerald-500">
@@ -24,12 +26,13 @@
                             d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span class="font-semibold text-lg">Sell</span>
+                    {{-- TODO: Show total of Sell Transaction History --}}
                     <span
-                        class="bg-emerald-100 text-emerald-700 py-0.5 px-2 rounded-full text-xs font-medium inline-block">{{ $transactions->count() }}</span>
+                        class="bg-emerald-100 text-emerald-700 py-0.5 px-2 rounded-full text-xs font-medium inline-block">7</span>
                 </div>
             </div>
         </nav>
-        @if ($transactions->count() == 0)
+        {{-- TODO: If the Sell Transaction data is empty --}}
             <div class="w-full max-w-screen-2xl mx-auto">
                 <div class="w-full bg-emerald-200 text-center rounded-lg px-4 py-10 mb-4">
                     <h1 class="text-emerald-700 text-base sm:text-2xl font-bold">
@@ -42,7 +45,7 @@
                     </a>
                 </div>
             </div>
-        @else
+        {{-- TODO: If the Sell Transaction data is not empty --}}
             <div class="w-full max-w-screen-lg mx-auto">
                 <h1 class="text-2xl sm:text-4xl text-emerald-600 font-medium leading-tight">
                     Transaction History
@@ -50,22 +53,17 @@
             </div>
             <div class="mt-4 w-full max-w-screen-lg mx-auto bg-white shadow overflow-hidden sm:rounded-md">
                 <ul class="divide-y divide-gray-200">
-                    @foreach ($transactions as $tr)
-                        <?php $trans = $tr
-                            ->bids()
-                            ->orderBy('amount', 'desc')
-                            ->where('status', 'accepted')
-                            ->first(); ?>
+                    {{-- TODO: Show list of the sell transaction data (accepted bid on every sold art) --}}
                         <li class="block hover:bg-gray-50">
                             <div class="px-4 py-4 sm:px-6">
                                 <div class="flex items-center justify-between">
                                     <p class="text-sm font-semibold text-emerald-600 truncate">
-                                        {{ '@' . $trans->user->nickname }}
+                                        Buyer Nickname
                                     </p>
                                     <div class="ml-2 flex-shrink-0 flex">
                                         <p
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 capitalize">
-                                            {{ $trans->status }}
+                                            Transaction Bid Status
                                         </p>
                                     </div>
                                 </div>
@@ -76,7 +74,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
-                                    {{ $trans->art->name }}
+                                    Art Name
                                 </p>
                                 <div class="mt-2 sm:flex sm:justify-between">
                                     <div class="sm:flex">
@@ -87,7 +85,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
-                                            {{ $trans->amount . ' ETH' }}
+                                            Bid Amount ETH
                                         </p>
                                         <p class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0 sm:ml-6">
                                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +94,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2zM10 8.5a.5.5 0 11-1 0 .5.5 0 011 0zm5 5a.5.5 0 11-1 0 .5.5 0 011 0z" />
                                             </svg>
-                                            {{ $trans->fee . ' ETH' }}
+                                            Fee ETH
                                         </p>
                                     </div>
                                     <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
@@ -108,18 +106,18 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                         <p>
-                                            {{ date_format($trans->created_at, 'F d, Y') }}
+                                            January 18, 2022
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                    @endforeach
+                    {{-- END LIST --}}
                 </ul>
             </div>
             <div class="w-full max-w-screen-lg mx-auto mt-4">
-                {{ $transactions->links() }}
+                Paginate
             </div>
-        @endif
+        {{-- END --}}
     </main>
 @endsection

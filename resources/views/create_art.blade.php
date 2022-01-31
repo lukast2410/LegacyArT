@@ -2,8 +2,8 @@
 
 @section('content')
     <main class="w-full max-w-screen-lg lg:mx-auto px-6 sm:px-8">
-        <form class="rounded-lg shadow-md my-8 bg-white p-6 sm:p-8" action="{{ route('create.art') }}" method="POST"
-            enctype="multipart/form-data">
+        {{-- TODO: Create Art Action --}}
+        <form class="rounded-lg shadow-md my-8 bg-white p-6 sm:p-8" action="" method="">
             @csrf
 
             <h1 class="text-2xl sm:text-4xl font-medium text-emerald-600">Create Art</h1>
@@ -35,11 +35,10 @@
                 </label>
             </div>
             <input id="art_image" type="file" class="hidden" name="art_image" value="Profile">
-            @error('art_image')
-                <p class="text-red-500 text-xs italic mt-0.5">
-                    {{ $message }}
-                </p>
-            @enderror
+            {{-- TODO: If Art Image is invalid, Provide Error Message --}}
+            <p class="text-red-500 text-xs italic mt-0.5">
+                Error message
+            </p>
 
             <div class="mt-6">
                 <label for="name" class="block text-sm font-medium text-gray-700">
@@ -51,11 +50,10 @@
                         name="name" required autocomplete="name" value="{{ old('name') }}" autofocus>
                 </div>
 
-                @error('name')
-                    <p class="text-red-500 text-xs italic mt-0.5">
-                        {{ $message }}
-                    </p>
-                @enderror
+                {{-- TODO: If Art Name is invalid, Provide Error Message --}}
+                <p class="text-red-500 text-xs italic mt-0.5">
+                    Error message
+                </p>
             </div>
 
             <div class="flex flex-col mt-6">
@@ -68,10 +66,16 @@
                         class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-200 bg-gray-50 text-emerald-600 font-medium sm:text-sm">
                         ETH
                     </span>
+                    {{-- TODO: Validate the minimum and it must be 2 digits maximum after comma --}}
                     <input id="start_price" type="number"
                         class="form-input flex-1 min-w-0 block w-full @error('start_price') border-red-500 @enderror appearance-none border-2 border-gray-200 shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2 rounded-none rounded-r-md"
-                        name="start_price" required autocomplete="start_price" placeholder="5.00" min="0.01" step=".01" value="{{ old('start_price') }}">
+                        name="start_price" required autocomplete="start_price" placeholder="5.00" min="" value="{{ old('start_price') }}">
                 </div>
+
+                {{-- TODO: If Start Price is invalid, Provide Error Message --}}
+                <p class="text-red-500 text-xs italic mt-0.5">
+                    Error message
+                </p>
             </div>
 
             <div class="mt-6">
@@ -84,11 +88,10 @@
                 </div>
                 <p class="mt-2 text-sm text-gray-500">Write a few sentences about your art.</p>
 
-                @error('description')
-                    <p class="text-red-500 text-xs italic mt-0.5">
-                        {{ $message }}
-                    </p>
-                @enderror
+                {{-- TODO: If Art Description is invalid, Provide Error Message --}}
+                <p class="text-red-500 text-xs italic mt-0.5">
+                    Error message
+                </p>
             </div>
 
             <button type="submit"

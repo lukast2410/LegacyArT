@@ -16,9 +16,9 @@
                 class="flex space-x-2 items-center text-gray-500 hover:text-gray-700">
                 <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
                     {{-- TODO: If user from google, get profile image from the url --}}
-                    <img src="" alt="Google Profile Image" class="h-full w-full object-cover">
+                    <img src="" alt="Creator Profile from Google" class="h-full w-full object-cover">
                     {{-- TODO: If user is not from google, get profile image from storage --}}
-                    <img src="" alt="Profile Image from Storage"
+                    <img src="" alt="Creator Profile from Storage"
                         class="h-full w-full object-cover object-center">
                     {{-- END --}}
                 </div>

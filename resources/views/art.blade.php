@@ -20,9 +20,9 @@
                         class="mt-1 w-fit block flex items-center p-2 bg-emerald-100 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
                         <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
                             {{-- TODO: If user from google, get profile image from the url --}}
-                            <img src="" alt="Google Profile Image" class="h-full w-full object-cover">
+                            <img src="" alt="Creator Profile from Google" class="h-full w-full object-cover">
                             {{-- TODO: If user is not from google, get profile image from storage --}}
-                            <img src="" alt="Profile Image from Storage" class="h-full w-full object-cover object-center">
+                            <img src="" alt="Creator Profile from Storage" class="h-full w-full object-cover object-center">
                             {{-- END --}}
                         </div>
                         <span class="text-emerald-800 font-bold px-3">Creator Nickname</span>
@@ -39,9 +39,9 @@
                     class="mt-1 w-fit block flex items-center p-2 bg-emerald-100 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
                     <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
                         {{-- TODO: If user from google, get profile image from the url --}}
-                        <img src="" alt="Google Profile Image" class="h-full w-full object-cover">
+                        <img src="" alt="Owner Profile from Google" class="h-full w-full object-cover">
                         {{-- TODO: If user is not from google, get profile image from storage --}}
-                        <img src="" alt="Profile Image from Storage" class="h-full w-full object-cover object-center">
+                        <img src="" alt="Owner Profile from Storage" class="h-full w-full object-cover object-center">
                         {{-- END --}}
                     </div>
                     <span class="text-emerald-800 font-bold px-3"></span>
@@ -65,12 +65,12 @@
                     class="mt-4 w-fit block flex items-center transition-all text-emerald-600 hover:text-emerald-800">
                     <div class="h-5 w-5 rounded-full overflow-hidden bg-gray-50">
                         {{-- TODO: If user from google, get profile image from the url --}}
-                        <img src="" alt="Google Profile Image" class="h-full w-full object-cover">
+                        <img src="" alt="Highest Bidder Profile from Google" class="h-full w-full object-cover">
                         {{-- TODO: If user is not from google, get profile image from storage --}}
-                        <img src="" alt="Profile Image from Storage" class="h-full w-full object-cover object-center">
+                        <img src="" alt="Highest Bidder Profile from Storage" class="h-full w-full object-cover object-center">
                         {{-- END --}}
                     </div>
-                    <span class="font-semibold px-2">{{ '@' . $bids[0]->user->nickname }}</span>
+                    <span class="font-semibold px-2">Highest Bidder Nickname</span>
                 </a>
                 {{-- END --}}
                 {{-- TODO: If the user is not an admin and not the owner of this art --}}
@@ -111,9 +111,9 @@
                     <div class="shadow-md rounded-lg p-4 flex items-start sm:items-center mb-3 relative">
                         <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
                             {{-- TODO: If user from google, get profile image from the url --}}
-                            <img src="" alt="Google Profile Image" class="h-full w-full object-cover">
+                            <img src="" alt="Winner Profile from Google" class="h-full w-full object-cover">
                             {{-- TODO: If user is not from google, get profile image from storage --}}
-                            <img src="" alt="Profile Image from Storage" class="h-full w-full object-cover object-center">
+                            <img src="" alt="Winner Profile from Storage" class="h-full w-full object-cover object-center">
                             {{-- END --}}
                         </div>
                         <div class="flex-1 flex items-center justify-between ml-4 mr-10 sm:mr-0">
@@ -143,9 +143,9 @@
                     <div class="shadow-md rounded-lg p-4 flex items-start sm:items-center mb-3 relative">
                         <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
                             {{-- TODO: If user from google, get profile image from the url --}}
-                            <img src="" alt="Google Profile Image" class="h-full w-full object-cover">
+                            <img src="" alt="Bidder Profile from Google" class="h-full w-full object-cover">
                             {{-- TODO: If user is not from google, get profile image from storage --}}
-                            <img src="" alt="Profile Image from Storage" class="h-full w-full object-cover object-center">
+                            <img src="" alt="Bidder Profile from Storage" class="h-full w-full object-cover object-center">
                             {{-- END --}}
                         </div>
                         <div class="flex-1 flex items-center justify-between ml-4 mr-10 sm:mr-0">
@@ -195,7 +195,7 @@
                             {{-- END --}}
                         </div>
                     </div>
-                {{-- END FOREACH --}}
+                {{-- END LIST --}}
                 {{-- END --}}
             </div>
         </div>
