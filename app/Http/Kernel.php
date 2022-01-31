@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'creator' => \App\Http\Middleware\CreatorMiddleware::class,
         'not.admin' => \App\Http\Middleware\NotAdminMiddleware::class,
         'user.only' => \App\Http\Middleware\UserMiddleware::class,
+        'not.creator' => \App\Http\Middleware\NotCreatorMiddleware::class,
     ];
 }

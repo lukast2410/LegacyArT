@@ -1,7 +1,7 @@
 @extends('layouts.sign')
 
 @section('content')
-    <main class="w-screen h-screen flex sm:py-16 items-center justify-center">
+    <main class="w-full h-screen flex sm:py-16 items-center justify-center overflow-hidden">
         <div class="w-screen sm:w-11/12 lg:w-5/6 sm:mx-auto h-full flex justify-between items-center relative">
             <div
                 class="hidden sm:flex flex-col justify-end lg:justify-center xl:justify-between w-full lg:w-3/5 h-full lg:mr-8">

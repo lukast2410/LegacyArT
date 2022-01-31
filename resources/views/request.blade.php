@@ -27,7 +27,7 @@
 
             <div class="mt-6">
                 <label for="banner" class="block text-sm font-medium text-gray-700">
-                    Banner photo
+                    Banner image
                 </label>
                 <div
                     class="@error('banner') border-red-500 @enderror mt-1 flex justify-center px-6 py-16 border-2 border-gray-300 border-dashed rounded-md relative">

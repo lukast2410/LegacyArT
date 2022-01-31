@@ -7,6 +7,7 @@ use App\Models\RequestCreator;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class RequestCreatorController extends Controller
 {
@@ -17,16 +18,13 @@ class RequestCreatorController extends Controller
      */
     public function index()
     {
-        $requests = RequestCreator::orderBy('created_at', 'desc')->paginate(20);
+        if(Gate::allows('admin')){
+            $requests = RequestCreator::orderBy('created_at', 'desc')->paginate(20);
+        }else{
+            $requests = RequestCreator::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(20);
+        }
 
         return view('view_request')->with(compact('requests'));
-    }
-
-    public function my_request()
-    {
-        $requests = RequestCreator::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(20);
-
-        return view('view_request')->with(compact(['requests']));
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.sign')
 
 @section('content')
-    <main class="w-full sm:w-11/12 mx-auto max-w-screen-lg flex items-center h-screen">
+    <main class="w-full sm:w-11/12 mx-auto max-w-screen-lg flex items-center h-screen overflow-hidden">
         <div
             class="bg-gradient-to-br from-emerald-50 to-emerald-100 w-full px-8 sm:px-10 py-10 sm:bg-gray-50 sm:bg-none rounded-2xl text-center shadow-lg h-full sm:h-fit">
             <h1 class="text-3xl sm:text-4xl font-medium text-gray-700">Verify your email</h1>

@@ -51,13 +51,16 @@ Route::middleware(['auth', 'verified', 'creator'])->group(function() {
 Route::middleware(['auth', 'verified', 'user.only'])->group(function() {
   Route::get('/request-creator', [RequestCreatorController::class, 'create'])->name('request.creator');
   Route::post('/request', [RequestCreatorController::class, 'store'])->name('request');
-  Route::get('/my-request', [RequestCreatorController::class, 'my_request'])->name('my.request');
 });
 
 // Admin Only
 Route::middleware(['auth', 'admin'])->group(function() {
   Route::get('/revenue', [BidController::class, 'revenue'])->name('revenue');
-  Route::get('/view-requests', [RequestCreatorController::class, 'index'])->name('view.requests');
   Route::put('/reject-request/{id}', [RequestCreatorController::class, 'reject'])->name('reject.request');
   Route::put('/accept-request/{id}', [RequestCreatorController::class, 'accept'])->name('accept.request');
+});
+
+// User except Creator
+Route::middleware(['auth', 'verified', 'not.creator'])->group(function() {
+  Route::get('/view-requests', [RequestCreatorController::class, 'index'])->name('view.requests');
 });

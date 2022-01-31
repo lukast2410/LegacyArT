@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $creators = Creator::inRandomOrder()->get();
+        $creators = Creator::inRandomOrder()->limit(4)->get();
         $arts = Art::whereNull('owner_id')->inRandomOrder()->limit(24)->get();
         $newest = Art::whereNull('owner_id')->inRandomOrder()->first();
         $currentBid = $newest->bids()->orderBy('amount', 'desc')->first();

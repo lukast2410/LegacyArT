@@ -32,8 +32,8 @@ class BidController extends Controller
 
     public function revenue()
     {
-        $bids = Bid::orderBy('created_at', 'desc')->paginate(20);
-        $total = Bid::sum('fee');
+        $bids = Bid::withTrashed()->orderBy('created_at', 'desc')->paginate(20);
+        $total = Bid::withTrashed()->sum('fee');
 
         return view('revenue')->with(compact(['bids', 'total']));
     }

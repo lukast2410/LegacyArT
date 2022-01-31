@@ -101,7 +101,7 @@
                         Upgrade to Creator
                     </a>
                 @endif
-                <a href="{{ route('my.request') }}"
+                <a href="{{ route('view.requests') }}"
                     class="w-full sm:w-fit sm:ml-4 mb-2 sm:mb-0 inline-flex items-center px-4 py-2 border border-emerald-500 sm:border-transparent text-base font-medium rounded-md sm:shadow-sm text-emerald-700 sm:text-white hover:bg-gray-100 sm:bg-emerald-400 sm:hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
