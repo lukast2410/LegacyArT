@@ -16,8 +16,14 @@
                     </h3>
                     <a href="{{ route('user.profile', '@' . $art->creator->user->nickname) }}"
                         class="mt-1 w-fit block flex items-center p-2 bg-emerald-100 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                        <img class="h-8 w-8 object-cover object-center rounded-full"
-                            src="{{ asset('storage/' . $art->creator->user->profile_image) }}" alt="Owner Profile">
+                        <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
+                            @can('from-google', $art->creator->user)
+                                <img src="{{ $art->creator->user->profile_image }}" alt="Owner Profile from Google" class="h-full w-full object-cover">
+                            @else
+                                <img src="{{ asset('storage/' . $art->creator->user->profile_image) }}" alt="Owner Profile from storage"
+                                    class="h-full w-full object-cover object-center">
+                            @endcan
+                        </div>
                         <span class="text-emerald-800 font-bold px-3">{{ '@' . $art->creator->user->nickname }}</span>
                     </a>
                 </div>
@@ -29,8 +35,14 @@
                     </h3>
                     <a href="{{ route('user.profile', '@' . $art->owner->nickname) }}"
                         class="mt-1 w-fit block flex items-center p-2 bg-emerald-100 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                        <img class="h-8 w-8 object-cover object-center rounded-full"
-                            src="{{ asset('storage/' . $art->owner->profile_image) }}" alt="Owner Profile">
+                        <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
+                            @can('from-google', $art->owner)
+                                <img src="{{ $art->owner->profile_image }}" alt="Owner Profile from Google" class="h-full w-full object-cover">
+                            @else
+                                <img src="{{ asset('storage/' . $art->owner->profile_image) }}" alt="Owner Profile from storage"
+                                    class="h-full w-full object-cover object-center">
+                            @endcan
+                        </div>
                         <span class="text-emerald-800 font-bold px-3">{{ '@' . $art->owner->nickname }}</span>
                     </a>
                 @else
@@ -52,8 +64,14 @@
                         </h2>
                         <a href="{{ route('user.profile', '@' . $bids[0]->user->nickname) }}"
                             class="mt-4 w-fit block flex items-center transition-all text-emerald-600 hover:text-emerald-800">
-                            <img class="h-5 w-5 object-cover object-center rounded-full"
-                                src="{{ asset('storage/' . $bids[0]->user->profile_image) }}" alt="Owner Profile">
+                            <div class="h-5 w-5 rounded-full overflow-hidden bg-gray-50">
+                                @can('from-google', $bids[0]->user)
+                                    <img src="{{ $bids[0]->user->profile_image }}" alt="Bidder Profile from Google" class="h-full w-full object-cover">
+                                @else
+                                    <img src="{{ asset('storage/' . $bids[0]->user->profile_image) }}" alt="Bidder Profile from storage"
+                                        class="h-full w-full object-cover object-center">
+                                @endcan
+                            </div>
                             <span class="font-semibold px-2">{{ '@' . $bids[0]->user->nickname }}</span>
                         </a>
                     @endif
@@ -105,8 +123,14 @@
                             ->first();
                         ?>
                         <div class="shadow-md rounded-lg p-4 flex items-start sm:items-center mb-3 relative">
-                            <img class="h-8 w-8 object-cover object-center rounded-full"
-                                src="{{ asset('storage/' . $bid->user->profile_image) }}" alt="Bid User Profile">
+                            <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
+                                @can('from-google', $bid->user)
+                                    <img src="{{ $bid->user->profile_image }}" alt="Bidder Profile from Google" class="h-full w-full object-cover">
+                                @else
+                                    <img src="{{ asset('storage/' . $bid->user->profile_image) }}" alt="Bidder Profile from storage"
+                                        class="h-full w-full object-cover object-center">
+                                @endcan
+                            </div>
                             <div class="flex-1 flex items-center justify-between ml-4 mr-10 sm:mr-0">
                                 <div>
                                     <h4 class="block sm:hidden text-lg font-semibold text-emerald-900 leading-4 mb-1">
@@ -132,8 +156,14 @@
                     @endif
                     @foreach ($bids as $bid)
                         <div class="shadow-md rounded-lg p-4 flex items-start sm:items-center mb-3 relative">
-                            <img class="h-8 w-8 object-cover object-center rounded-full"
-                                src="{{ asset('storage/' . $bid->user->profile_image) }}" alt="Bid User Profile">
+                            <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
+                                @can('from-google', $bid->user)
+                                    <img src="{{ $bid->user->profile_image }}" alt="Bidder Profile from Google" class="h-full w-full object-cover">
+                                @else
+                                    <img src="{{ asset('storage/' . $bid->user->profile_image) }}" alt="Bidder Profile from storage"
+                                        class="h-full w-full object-cover object-center">
+                                @endcan
+                            </div>
                             <div class="flex-1 flex items-center justify-between ml-4 mr-10 sm:mr-0">
                                 <div>
                                     <h4 class="block sm:hidden text-lg font-semibold text-emerald-900 leading-4 mb-1">

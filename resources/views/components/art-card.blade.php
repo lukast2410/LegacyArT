@@ -10,8 +10,14 @@
         <div class="flex mt-3">
             <a href="{{ route('user.profile', '@' . $art->creator->user->nickname) }}"
                 class="flex space-x-2 items-center text-gray-500 hover:text-gray-700">
-                <img class="h-8 w-8 rounded-full overflow-hidden object-cover object-center"
-                    src="{{ asset('storage/' . $art->creator->user->profile_image) }}" alt="Creator Profile">
+                <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
+                    @can('from-google', $art->creator->user)
+                        <img src="{{ $art->creator->user->profile_image }}" alt="Creator Profile from Google" class="h-full w-full object-cover">
+                    @else
+                        <img src="{{ asset('storage/' . $art->creator->user->profile_image) }}" alt="Creator Profile from storage"
+                            class="h-full w-full object-cover object-center">
+                    @endcan
+                </div>
                 <span class="font-bold">{{ '@' . $art->creator->user->nickname }}</span>
             </a>
         </div>

@@ -19,8 +19,15 @@
                     </h3>
                     <a href="{{ route('user.profile', '@' . $newest->creator->user->nickname) }}"
                         class="block flex items-center p-2 bg-emerald-100 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                        <img class="h-8 w-8 object-cover object-center rounded-full"
-                            src="{{ asset('storage/' . $newest->creator->user->profile_image) }}" alt="Owner Profile">
+                        <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
+                            @can('from-google', $newest->creator->user)
+                                <img src="{{ $newest->creator->user->profile_image }}" alt="Creator Profile from Google"
+                                    class="h-full w-full object-cover">
+                            @else
+                                <img src="{{ asset('storage/' . $newest->creator->user->profile_image) }}"
+                                    alt="Creator Profile from storage" class="h-full w-full object-cover object-center">
+                            @endcan
+                        </div>
                         <span class="text-emerald-800 font-bold px-3">{{ '@' . $newest->creator->user->nickname }}</span>
                     </a>
                 </div>
@@ -31,14 +38,14 @@
                                 Current bid
                             </h3>
                             <h2 class="text-2xl sm:text-4xl font-semibold text-emerald-800 leading whitespace-nowrap">
-                                {{ number_format(floor($currentBid->amount)) . (count(explode('.', $currentBid->amount)) == 2 ? '.' . explode('.', $currentBid->amount)[1] : '') }}
+                                {{ number_format(floor($currentBid->amount)) .(count(explode('.', $currentBid->amount)) == 2 ? '.' . explode('.', $currentBid->amount)[1] : '') }}
                                 ETH</h2>
                         @else
                             <h3 class="text-lg font-semibold text-emerald-600">
                                 Start bid
                             </h3>
                             <h2 class="text-2xl sm:text-4xl font-semibold text-emerald-800 leading whitespace-nowrap">
-                                {{ number_format(floor($newest->start_price)) . (count(explode('.', $newest->start_price)) == 2 ? '.' . explode('.', $newest->start_price)[1] : '') }}
+                                {{ number_format(floor($newest->start_price)) .(count(explode('.', $newest->start_price)) == 2 ? '.' . explode('.', $newest->start_price)[1] : '') }}
                                 ETH</h2>
                         @endif
                     </div>
@@ -73,12 +80,17 @@
                 @foreach ($creators as $creator)
                     <a href="{{ route('user.profile', '@' . $creator->user->nickname) }}"
                         class="block relative bg-white rounded-lg overflow-hidden shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                        <img class="w-full h-full object-cover object-center"
-                            src="{{ asset('storage/' . $creator->user->profile_image) }}" alt="Creator Profile">
+                        @can('from-google', $creator->user)
+                            <img src="{{ $creator->user->profile_image }}" alt="Creator Profile from Google"
+                                class="w-full h-full object-cover object-center">
+                        @else
+                            <img src="{{ asset('storage/' . $creator->user->profile_image) }}"
+                                alt="Creator Profile from storage" class="h-full w-full object-cover object-center">
+                        @endcan
                         <div
                             class="absolute left-0 top-0 w-full h-full bg-black-trans flex items-end text-gray-50 font-semibold">
                             <span class="m-3 py-2 px-3 bg-black rounded-lg">
-                                {{ '@' . $creator->user->name }}
+                                {{ '@' . $creator->user->nickname }}
                             </span>
                         </div>
                     </a>

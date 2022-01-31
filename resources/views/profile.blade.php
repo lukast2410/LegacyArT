@@ -10,7 +10,7 @@
         </div>
         <div class="relative">
             <div class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 h-36 w-36 bg-emerald-300 rounded-full p-1">
-                @can('from-google')
+                @can('from-google', $user)
                     <img src="{{ $user->profile_image }}" alt="Profile Image" class="w-full h-full rounded-full overflow-hidden">
                 @else
                     <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Image" class="w-full h-full rounded-full overflow-hidden">

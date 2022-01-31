@@ -87,7 +87,7 @@
                                             id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                             <span class="sr-only">Open user menu</span>
                                             <span class="inline-block h-8 w-8 rounded-full overflow-hidden bg-gray-200">
-                                                @can('from-google')
+                                                @can('from-google', Auth::user())
                                                     <img src="{{ Auth::user()->profile_image }}" alt=""
                                                         class="h-full w-full object-cover">
                                                 @else
@@ -208,7 +208,7 @@
                             <a href="{{ route('user.profile', '@' . Auth::user()->nickname) }}"
                                 class="hover:bg-emerald-100 transition inline-grid place-items-center my-2 mr-2 ml-1 rounded-md text-gray-500">
                                 <div class="h-6 w-6 rounded-full overflow-hidden bg-gray-50">
-                                    @can('from-google')
+                                    @can('from-google', Auth::user())
                                         <img src="{{ Auth::user()->profile_image }}" alt="" class="h-full w-full object-cover">
                                     @else
                                         <img src="{{ asset('storage/' . Auth::user()->profile_image) }}" alt=""
@@ -242,7 +242,7 @@
                             <a href="{{ route('user.profile', '@' . Auth::user()->nickname) }}"
                                 class="hover:bg-emerald-100 transition inline-grid place-items-center my-2 mr-2 ml-1 rounded-md text-gray-500">
                                 <div class="h-6 w-6 rounded-full overflow-hidden bg-gray-50">
-                                    @can('from-google')
+                                    @can('from-google', Auth::user())
                                         <img src="{{ Auth::user()->profile_image }}" alt="" class="h-full w-full object-cover">
                                     @else
                                         <img src="{{ asset('storage/' . Auth::user()->profile_image) }}" alt=""
