@@ -122,7 +122,8 @@
                             <h1 class="text-emerald-700 text-base sm:text-2xl font-bold">
                                 There are no collected art yet
                             </h1>
-                            <a href="{{ route('home') }}"
+                            {{-- TODO: Redirect to home --}}
+                            <a href=""
                                 class="text-emerald-600 text-sm sm:text-base font-medium hover:text-emerald-700">
                                 Let's buy some art.
                             </a>

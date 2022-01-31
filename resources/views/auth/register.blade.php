@@ -5,7 +5,8 @@
         <div class="w-screen sm:w-11/12 lg:w-5/6 sm:mx-auto h-full flex justify-between items-center relative">
             <div
                 class="hidden sm:flex flex-col justify-end lg:justify-center xl:justify-between w-full lg:w-3/5 h-full lg:mr-8">
-                <a href="{{ route('home') }}" class="hidden lg:block">
+                {{-- TODO: Redirect to home --}}
+                <a href="" class="hidden lg:block">
                     <img class="h-10 w-fit" src="{{ asset('images/logo_long.png') }}" alt="Logo LegacyArT">
                 </a>
                 <h1
@@ -24,21 +25,21 @@
                         d="M0,0L48,10.7C96,21,192,43,288,53.3C384,64,480,64,576,96C672,128,768,192,864,197.3C960,203,1056,149,1152,154.7C1248,160,1344,224,1392,256L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
                     </path>
                 </svg>
-                <a href="{{ route('home') }}" class="lg:hidden">
+                {{-- TODO: Redirect to home --}}
+                <a href="" class="lg:hidden">
                     <img class="relative -translate-y-3/4 ml-6 sm:ml-8 h-7 w-fit"
                         src="{{ asset('images/logo_long.png') }}" alt="Logo LegacyArT">
                 </a>
                 <div class="ml-6 sm:ml-8 bg-emerald-100 absolute -translate-y-1/3 lg:-translate-y-3/4 rounded-full flex">
-                    @if (Route::has('login'))
-                        <a class="py-3 pl-5 pr-3" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    @endif
+                    <a class="py-3 pl-5 pr-3" href="{{ route('login') }}">{{ __('Login') }}</a>
                     <div
                         class="py-3 px-6 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full text-white font-medium">
                         Register
                     </div>
                 </div>
+                {{-- ! Register Action --}}
                 <form class="w-full mt-14 sm:mt-12 lg:mt-10 px-6 space-y-4 sm:px-8" method="POST"
-                    action="{{ route('register') }}" enctype="multipart/form-data">
+                    action="{{ route('register') }}">
                     @csrf
 
                     <div
@@ -67,11 +68,10 @@
                         </label>
                     </div>
                     <input id="profile_image" type="file" class="hidden" name="profile_image" value="Profile">
-                    @error('profile_image')
-                        <p class="text-red-500 text-xs italic mt-0.5">
-                            {{ $message }}
-                        </p>
-                    @enderror
+                    {{-- TODO: If Profile Image is invalid, Provide Error Message --}}
+                    <p class="text-red-500 text-xs italic mt-0.5">
+                        Error message
+                    </p>
 
                     <div class="flex flex-wrap">
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2">
@@ -82,11 +82,10 @@
                             class="@error('name') border-red-500 @enderror appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
                             name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                        @error('name')
-                            <p class="text-red-500 text-xs italic mt-0.5">
-                                {{ $message }}
-                            </p>
-                        @enderror
+                        {{-- TODO: If Full Name is invalid, Provide Error Message --}}
+                        <p class="text-red-500 text-xs italic mt-0.5">
+                            Error message
+                        </p>
                     </div>
 
                     <div class="flex flex-col flex-wrap">
@@ -104,11 +103,10 @@
                                 name="nickname" value="{{ old('nickname') }}" required autocomplete="nickname">
                         </div>
 
-                        @error('nickname')
-                            <p class="text-red-500 text-xs italic mt-0.5">
-                                {{ $message }}
-                            </p>
-                        @enderror
+                        {{-- TODO: If Nickname is invalid, Provide Error Message --}}
+                        <p class="text-red-500 text-xs italic mt-0.5">
+                            Error message
+                        </p>
                     </div>
 
                     <div class="flex flex-wrap">
@@ -120,11 +118,10 @@
                             class="@error('email') border-red-500 @enderror appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
                             name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                        @error('email')
-                            <p class="text-red-500 text-xs italic mt-0.5">
-                                {{ $message }}
-                            </p>
-                        @enderror
+                        {{-- TODO: If Email is invalid, Provide Error Message --}}
+                        <p class="text-red-500 text-xs italic mt-0.5">
+                            Error message
+                        </p>
                     </div>
                     <div class="flex flex-wrap">
                         <label for="password" class="block text-gray-700 text-sm font-bold mb-2">
@@ -135,11 +132,10 @@
                             class="@error('password') border-red-500 @enderror appearance-none border-2 border-gray-200 rounded-md w-full shadow-sm focus:outline-none focus:shadow-none focus:border-emerald-400 sm:text-sm px-3 py-2"
                             name="password" required>
 
-                        @error('password')
-                            <p class="text-red-500 text-xs italic mt-0.5">
-                                {{ $message }}
-                            </p>
-                        @enderror
+                        {{-- TODO: If Password is invalid, Provide Error Message --}}
+                        <p class="text-red-500 text-xs italic mt-0.5">
+                            Error message
+                        </p>
                     </div>
                     <div class="flex flex-wrap">
                         <label for="password-confirm" class="block text-gray-700 text-sm font-bold mb-2">
@@ -170,13 +166,12 @@
                     </div>
 
                     <div class="flex flex-wrap">
-                        @if (Route::has('google.login'))
-                            <a href="{{ route('google.login') }}"
-                                class="flex items-center justify-center w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-slate-400 bg-white border-2 border-gray-200 hover:bg-gray-200">
-                                <img src="/images/google.png" alt="Google" class="h-5 w-5 mr-2">
-                                {{ __('Continue with Google') }}
-                            </a>
-                        @endif
+                        {{-- TODO: Provide Google Authentication --}}
+                        <a href=""
+                            class="flex items-center justify-center w-full select-none font-bold whitespace-no-wrap p-2.5 rounded-lg text-base leading-normal no-underline text-slate-400 bg-white border-2 border-gray-200 hover:bg-gray-200">
+                            <img src="/images/google.png" alt="Google" class="h-5 w-5 mr-2">
+                            {{ __('Continue with Google') }}
+                        </a>
                     </div>
                 </form>
                 <footer class="bg-gray-100 p-3 text-center text-xs font-medium text-gray-500 mt-8">
