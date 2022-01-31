@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\RequestCreatorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,7 @@ Auth::routes(['verify' => true]);
 Route::get('auth/google', [GoogleController::class, 'redirect'])->name('google.login');
 Route::get('auth/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile/{nickname}', [UserController::class, 'show'])->name('user.profile');
 Route::get('/art/{id}', [ArtController::class, 'show'])->name('art.detail');
 Route::post('/email/resend-verification', [VerificationController::class, 'resendVerification'])->middleware(['auth', 'throttle:6,1'])->name('resend.verification');
@@ -47,7 +48,7 @@ Route::middleware(['auth', 'verified', 'not.admin'])->group(function() {
 Route::middleware(['auth', 'verified', 'creator'])->group(function() {
   Route::get('/create-art', [ArtController::class, 'create'])->name('create.art');
   Route::post('/accept-offer', [ArtController::class, 'accept_offer'])->name('accept.offer');
-  Route::post('/create-art', [ArtController::class, 'store'])->name('create.art');
+  Route::post('/insert-art', [ArtController::class, 'store'])->name('insert.art');
   Route::get('/sell-history', [BidController::class, 'sell_history'])->name('sell.history');
 });
 

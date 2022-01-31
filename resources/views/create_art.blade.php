@@ -2,7 +2,7 @@
 
 @section('content')
     <main class="w-full max-w-screen-lg lg:mx-auto px-6 sm:px-8">
-        <form class="rounded-lg shadow-md my-8 bg-white p-6 sm:p-8" action="{{ route('create.art') }}" method="POST"
+        <form class="rounded-lg shadow-md my-8 bg-white p-6 sm:p-8" action="{{ route('insert.art') }}" method="POST"
             enctype="multipart/form-data">
             @csrf
 
