@@ -34,6 +34,7 @@ class RequestCreatorController extends Controller
      */
     public function create()
     {
+        if(Gate::denies('can-request')) return redirect(route('view.requests'));
         return view('request');
     }
 
@@ -46,8 +47,8 @@ class RequestCreatorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'reason' => ['required', 'string', 'min:20'],
-            'bio' => ['required', 'string', 'min:10'],
+            'reason' => ['required', 'string'],
+            'bio' => ['required', 'string'],
             'banner' => ['required', 'image', 'file', 'max:5120'],
         ]);
 

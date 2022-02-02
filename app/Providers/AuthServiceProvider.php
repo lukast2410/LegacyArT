@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\RequestCreator;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -37,8 +38,14 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role->name === "admin";
         });
 
-        Gate::define('can-request', function($user, $profile){
-            return $user && $user->id == $profile->id && $user->role->name === "user";
+        Gate::define('can-request', function($user){
+            if(!$user || $user->role->name !== "user") return false;
+            $count = RequestCreator::where('user_id', $user->id)->where('status', 'Pending')->count();
+            return $count == 0;
+        });
+
+        Gate::define('only-user', function($user){
+            return $user && $user->role->name === "user";
         });
 
         Gate::define('verify', function($user) {

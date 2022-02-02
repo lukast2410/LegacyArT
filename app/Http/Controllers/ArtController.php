@@ -40,7 +40,7 @@ class ArtController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'start_price' => ['required', 'min:0.01'],
-            'description' => ['required', 'string', 'min:10'],
+            'description' => ['required', 'string'],
             'art_image' => ['required', 'image', 'file', 'max:5120'],
         ]);
 
