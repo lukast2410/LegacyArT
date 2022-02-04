@@ -2,7 +2,8 @@
 
 @section('content')
     <main class="w-full max-w-screen-lg lg:mx-auto px-6">
-        <form class="rounded-lg shadow-md my-8 bg-white p-8" action="{{ route('request') }}" method="POST" enctype="multipart/form-data">
+        {{-- TODO: Provide Request Creator Action --}}
+        <form class="rounded-lg shadow-md my-8 bg-white p-8" action="" method="" >
             @csrf
 
             <h1 class="text-2xl sm:text-4xl font-medium text-emerald-600">Apply Request</h1>
@@ -18,11 +19,10 @@
                 </div>
                 <p class="mt-2 text-sm text-gray-500">Write a few reasons why you want to be a creator.</p>
 
-                @error('reason')
-                    <p class="text-red-500 text-xs italic mt-0.5">
-                        {{ $message }}
-                    </p>
-                @enderror
+                {{-- TODO: If Reason is invalid, Provide Error Message --}}
+                <p class="text-red-500 text-xs italic mt-0.5">
+                    Error message
+                </p>
             </div>
 
             <div class="mt-6">
@@ -60,11 +60,10 @@
                 </div>
                 <input id="banner" name="banner" type="file" class="sr-only">
 
-                @error('banner')
-                    <p class="text-red-500 text-xs italic mt-0.5">
-                        {{ $message }}
-                    </p>
-                @enderror
+                {{-- TODO: If Banner is invalid, Provide Error Message --}}
+                <p class="text-red-500 text-xs italic mt-0.5">
+                    Error message
+                </p>
             </div>
 
             <div class="mt-6">
@@ -77,11 +76,10 @@
                 </div>
                 <p class="mt-2 text-sm text-gray-500">Write a few sentences about yourself.</p>
 
-                @error('bio')
-                    <p class="text-red-500 text-xs italic mt-0.5">
-                        {{ $message }}
-                    </p>
-                @enderror
+                {{-- TODO: If Bio is invalid, Provide Error Message --}}
+                <p class="text-red-500 text-xs italic mt-0.5">
+                    Error message
+                </p>
             </div>
 
             <button type="submit"

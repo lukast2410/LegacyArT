@@ -6,19 +6,14 @@ use Illuminate\View\Component;
 
 class ArtCard extends Component
 {
-    public $art;
-    public $lastBid;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($art)
+    public function __construct()
     {
-        $this->art = $art;
-        if($art->bids()->count() > 0){
-            $this->lastBid = $art->bids()->orderBy('amount', 'desc')->first();
-        }
+        
     }
 
     /**

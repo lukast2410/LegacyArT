@@ -41,10 +41,5 @@ class VerificationController extends Controller
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
-    public function resendVerification(Request $request)
-    {
-        $request->user()->sendEmailVerificationNotification();
-
-        return redirect(route('verification.notice'));
-    }
+    // TODO: Add function to resend an email verification
 }

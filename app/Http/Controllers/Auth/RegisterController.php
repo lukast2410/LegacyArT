@@ -49,12 +49,9 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // TODO: Validate the user data
+
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'nickname' => ['required', 'string', 'alpha_dash', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'profile_image' => ['required', 'image', 'file', 'max:5120'],
         ]);
     }
 
@@ -66,15 +63,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $profile_image = $data['profile_image']->store('profile');
-
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'nickname' => $data['nickname'],
-            'profile_image' => $profile_image,
-            'password' => Hash::make($data['password']),
-            'role_id' => 1
-        ]);
+        // TODO: Store the profile image and insert user data to database
     }
 }

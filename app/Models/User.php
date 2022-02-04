@@ -17,15 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'email_verified_at',
-        'profile_image',
-        'role_id',
-        'nickname',
-    ];
+    protected $fillable = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,33 +37,4 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function creator(){
-        return $this->hasOne(Creator::class);
-    }
-
-    public function role(){
-        return $this->belongsTo(Role::class, 'role_id');
-    }
-
-    public function arts(){
-        return $this->hasMany(Art::class, 'owner_id');
-    }
-
-    public function requests(){
-        return $this->hasMany(RequestCreator::class, 'user_id');
-    }
-
-    public function bids(){
-        return $this->hasMany(Bid::class);
-    }
-
-    public function isAdmin()
-    {
-        if ($this->role->name === "admin") {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
