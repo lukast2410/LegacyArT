@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\ArtController;
+use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\BidController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RequestCreatorController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
