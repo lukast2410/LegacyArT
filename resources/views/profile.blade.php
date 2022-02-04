@@ -37,8 +37,8 @@
                 </svg>
                 <span class="ml-1 font-bold">Email not verified</span>
             </button>
-            {{-- TODO: Provide Resend Email Verification Action --}}
-            <form id="resend-verification-form" method="POST" action="" class="hidden">
+            {{-- TODO: Provide Resend Email Verification --}}
+            <form id="resend-verification-form" method="POST" action="{{ route('resend.verification') }}" class="hidden">
                 @csrf
             </form>
             {{-- TODO: If the user is the profile owner and the email already verified --}}
@@ -92,7 +92,7 @@
                 {{-- END --}}
             </div>
             {{-- TODO: If the user can request (view the conditions in docs). Redirect to the Request Creator Page when clicked --}}
-            <a href=""
+            <a href="{{ route('request.creator') }}"
                 class="w-full sm:w-fit sm:ml-4 mb-4 sm:mb-0 inline-flex items-center px-4 py-2 border border-emerald-500 sm:border-transparent text-base font-medium rounded-md sm:shadow-sm text-emerald-700 sm:text-white hover:bg-gray-100 sm:bg-emerald-400 sm:hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -102,7 +102,7 @@
             </a>
             {{-- END --}}
             {{-- TODO: If the user is not an admin, guests, or creator. Redirect to View Requests Page when clicked --}}
-            <a href=""
+            <a href="{{ route('view.requests') }}"
                 class="w-full sm:w-fit sm:ml-4 mb-2 sm:mb-0 inline-flex items-center px-4 py-2 border border-emerald-500 sm:border-transparent text-base font-medium rounded-md sm:shadow-sm text-emerald-700 sm:text-white hover:bg-gray-100 sm:bg-emerald-400 sm:hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -124,7 +124,7 @@
                             There are no collected art yet
                         </h1>
                         {{-- TODO: Redirect to home --}}
-                        <a href="" class="text-emerald-600 text-sm sm:text-base font-medium hover:text-emerald-700">
+                        <a href="{{ route('home') }}" class="text-emerald-600 text-sm sm:text-base font-medium hover:text-emerald-700">
                             Let's buy some art.
                         </a>
                     </div>
@@ -146,7 +146,7 @@
                             There are no created art yet
                         </h1>
                         {{-- TODO: Redirect to Create Art Page --}}
-                        <a href="" class="text-emerald-600 text-sm sm:text-base font-medium hover:text-emerald-700">
+                        <a href="{{ route('create.art') }}" class="text-emerald-600 text-sm sm:text-base font-medium hover:text-emerald-700">
                             Let's create some art.
                         </a>
                     </div>

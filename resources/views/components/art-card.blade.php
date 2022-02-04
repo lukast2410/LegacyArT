@@ -8,11 +8,11 @@
     </a>
     <div class="w-full flex-1 pt-3 px-5 pb-5">
         {{-- TODO: Redirect to Art Detail Page --}}
-        <a href=""
+        <a href="{{ route('art.detail', 'art id') }}"
             class="block text-2xl font-bold text-emerald-800 truncate">Art Name</a>
         <div class="flex mt-3">
             {{-- TODO: Redirect to Art Creator Profile Page --}}
-            <a href=""
+            <a href="{{ route('user.profile', '@ nickname') }}"
                 class="flex space-x-2 items-center text-gray-500 hover:text-gray-700">
                 <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
                     {{-- TODO: If user from google, get profile image from the url --}}
@@ -28,7 +28,7 @@
     </div>
     <div class="bg-emerald-800 w-full py-4 px-5 text-white flex justify-between">
         {{-- TODO: Redirect to Art Detail Page --}}
-        <a href="" class="flex-1 mr-3">
+        <a href="{{ route('art.detail', 'art id') }}" class="flex-1 mr-3">
             {{-- TODO: If art has been sold --}}
                 <h3 class="text-emerald-400 font-medium">Last sold for</h3>
                 <h2 class="text-xl font-semibold">
@@ -46,11 +46,11 @@
         {{-- TODO: If art has been sold --}}
             <div class="text-right">
                 {{-- TODO: Redirect to Art Detail Page --}}
-                <a href="">
+                <a href="{{ route('art.detail', 'art id') }}">
                     <h3 class="text-emerald-400 font-medium">Owned by</h3>
                 </a>
                 {{-- TODO: Redirect to Art Owner Profile Page --}}
-                <a href=""
+                <a href="{{ route('user.profile', '@ nickname') }}"
                     class="text-gray-300 hover:text-white">
                     <h2 class="text-md leading-8 font-semibold">
                         Owner Nickname
@@ -60,11 +60,11 @@
         {{-- TODO: If there is at least one bid --}}
             <div class="text-right">
                 {{-- TODO: Redirect to Art Detail Page --}}
-                <a href="">
+                <a href="{{ route('art.detail', 'art id') }}">
                     <h3 class="text-emerald-400 font-medium">Last bid by</h3>
                 </a>
                 {{-- TODO: Redirect to Highest Bidder Profile Page --}}
-                <a href=""
+                <a href="{{ route('user.profile', '@ nickname') }}"
                     class="text-gray-300 hover:text-white">
                     <h2 class="text-md leading-8 font-semibold">
                         Highest Bidder Nickname

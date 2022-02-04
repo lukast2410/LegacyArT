@@ -6,7 +6,7 @@
             <div
                 class="hidden sm:flex flex-col justify-end lg:justify-center xl:justify-between w-full lg:w-3/5 h-full lg:mr-8">
                 {{-- TODO: Redirect to home --}}
-                <a href="" class="hidden lg:block">
+                <a href="{{ route('home') }}" class="hidden lg:block">
                     <img class="h-10 w-fit" src="{{ asset('images/logo_long.png') }}" alt="Logo LegacyArT">
                 </a>
                 <h1
@@ -26,7 +26,7 @@
                     </path>
                 </svg>
                 {{-- TODO: Redirect to home --}}
-                <a href="" class="lg:hidden">
+                <a href="{{ route('home') }}" class="lg:hidden">
                     <img class="relative -translate-y-3/4 ml-6 sm:ml-8 h-7 w-fit"
                         src="{{ asset('images/logo_long.png') }}" alt="Logo LegacyArT">
                 </a>

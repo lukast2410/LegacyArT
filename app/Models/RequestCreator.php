@@ -10,5 +10,9 @@ class RequestCreator extends Model
     use HasFactory;
     
     public $timestamps = true;
-    protected $fillable = [];
+    protected $fillable = [
+        'user_id', 'banner_image', 'bio', 'reason', 'status'
+    ];
+
+    // Add Eloquent if you want
 }

@@ -10,4 +10,6 @@ class Role extends Model
     use HasFactory;
     public $timestamps = true;
     protected $fillable = [];
+
+    // Add Eloquent if you want
 }

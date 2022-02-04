@@ -17,7 +17,15 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'email_verified_at',
+        'profile_image',
+        'role_id',
+        'nickname',
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -37,4 +45,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Add Eloquent if you want
 }

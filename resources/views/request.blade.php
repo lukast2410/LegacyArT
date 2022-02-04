@@ -3,7 +3,7 @@
 @section('content')
     <main class="w-full max-w-screen-lg lg:mx-auto px-6">
         {{-- TODO: Provide Request Creator Action --}}
-        <form class="rounded-lg shadow-md my-8 bg-white p-8" action="" method="" >
+        <form class="rounded-lg shadow-md my-8 bg-white p-8" action="{{ route('request') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <h1 class="text-2xl sm:text-4xl font-medium text-emerald-600">Apply Request</h1>

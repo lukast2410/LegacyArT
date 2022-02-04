@@ -9,7 +9,7 @@
                     There are no request yet
                 </h1>
                 {{-- TODO: Redirect user to the Request Creator Page --}}
-                <a href="" class="text-emerald-600 text-sm sm:text-base font-medium hover:text-emerald-700">
+                <a href="{{ route('request.creator') }}" class="text-emerald-600 text-sm sm:text-base font-medium hover:text-emerald-700">
                     Let's request to be a creator
                 </a>
             </div>
@@ -77,7 +77,8 @@
                                 {{-- TODO: If the user is an admin and the request status is still pending --}}
                                 <div class="mt-2 flex justify-end items-center text-sm text-gray-500 sm:mt-1">
                                     {{-- TODO: Provide Reject Request Action --}}
-                                    <form action="" method="">
+                                    <form action="{{ route('reject.request', 'request id') }}" method="POST">
+                                        @method('PUT')
                                         @csrf
 
                                         <button type="submit"
@@ -86,7 +87,8 @@
                                         </button>
                                     </form>
                                     {{-- TODO: Provide Accept Request Action --}}
-                                    <form action="" method="">
+                                    <form action="{{ route('accept.request', 'request id') }}" method="POST">
+                                        @method('PUT')
                                         @csrf
 
                                         <button type="submit"

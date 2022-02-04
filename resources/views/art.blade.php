@@ -16,7 +16,7 @@
                         Created by
                     </h3>
                     {{-- TODO: Redirect to Creator Profile Page --}}
-                    <a href=""
+                    <a href="{{ route('user.profile', '@ nickname') }}"
                         class="mt-1 w-fit block flex items-center p-2 bg-emerald-100 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
                         <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
                             {{-- TODO: If user from google, get profile image from the url --}}
@@ -35,7 +35,7 @@
                     Owned by
                 </h3>
                 {{-- TODO: Redirect to the Owner Profile Page --}}
-                <a href=""
+                <a href="{{ route('user.profile', '@ nickname') }}"
                     class="mt-1 w-fit block flex items-center p-2 bg-emerald-100 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
                     <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
                         {{-- TODO: If user from google, get profile image from the url --}}
@@ -61,7 +61,7 @@
                     Highest Bid ETH
                 </h2>
                 {{-- TODO: Redirect to the Highest Bidder Profile Page --}}
-                <a href=""
+                <a href="{{ route('user.profile', '@ nickname') }}"
                     class="mt-4 w-fit block flex items-center transition-all text-emerald-600 hover:text-emerald-800">
                     <div class="h-5 w-5 rounded-full overflow-hidden bg-gray-50">
                         {{-- TODO: If user from google, get profile image from the url --}}
@@ -79,7 +79,7 @@
                     Place a bid
                 </button>
                 {{-- TODO: If the user is the owner of this art and this art has at least one bid, provide Accept Offer Action --}}
-                <form action="" method="POST">
+                <form action="{{ route('accept.offer') }}" method="POST">
                     @csrf
                     <input type="hidden" name="id" id="id" value="{{ 'the art id' }}">
 
@@ -124,7 +124,7 @@
                                 <h4 class="font-semibold">
                                     Auction won by
                                     {{-- TODO: Redirect to the Winner Profile Page --}}
-                                    <a href=""
+                                    <a href="{{ route('user.profile', '@ nickname') }}"
                                         class="mt-1 text-emerald-600 hover:text-emerald-800">
                                         <span class="font-semibold">Winner Nickname</span>
                                     </a>
@@ -156,7 +156,7 @@
                                 <h4 class="font-semibold">
                                     Bid placed by
                                     {{-- TODO: Redirect to the Bidder Profile Page --}}
-                                    <a href=""
+                                    <a href="{{ route('user.profile', '@ nickname') }}"
                                         class="mt-1 text-emerald-600 hover:text-emerald-800">
                                         <span class="font-semibold">Bidder Nickname</span>
                                     </a>
@@ -167,7 +167,8 @@
                             </div>
                             <div class="hidden sm:flex flex-col justify-center items-end">
                                 {{-- TODO: If the user is the owner of this bid and the bid status is still ongoing, provide Cancel Bid Action --}}
-                                    <form action="" method="POST">
+                                    <form action="{{ route('cancel.bid', 'bid id') }}" method="POST">
+                                        @method('DELETE')
                                         @csrf
 
                                         <button type="submit"
@@ -181,7 +182,8 @@
                         </div>
                         <div class="block sm:hidden absolute top-0 right-0 p-4">
                             {{-- TODO: If the user is the owner of this bid and the bid status is still ongoing, provide Cancel Bid Action --}}
-                                <form action="" method="POST">
+                                <form action="{{ route('cancel.bid', 'bid id') }}" method="POST">
+                                    @method('DELETE')
                                     @csrf
 
                                     <button type="submit" class="p-2 bg-red-700 rounded text-xs font-semibold text-white">
@@ -206,7 +208,7 @@
         class="hidden fixed top-0 left-0 h-screen w-screen bg-black-trans-60 z-50 flex justify-center items-end sm:items-center pb-12">
         <div class="bg-white rounded-lg shadow p-6 mx-4 w-screen max-w-sm relative">
             {{-- TODO: Provide Submit Bid Action --}}
-            <form class="flex flex-col space-y-4" action="" method="POST">
+            <form class="flex flex-col space-y-4" action="{{ route('submit.bid') }}" method="POST">
                 @csrf
                 <input type="hidden" name="artId" id="artId" value="{{ 'the art id' }}">
 

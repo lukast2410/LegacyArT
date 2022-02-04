@@ -9,5 +9,9 @@ class Creator extends Model
 {
     use HasFactory;
     public $timestamps = true;
-    protected $fillable = [];
+    protected $fillable = [
+        'user_id', 'banner_image', 'bio'
+    ];
+
+    // Add Eloquent if you want
 }

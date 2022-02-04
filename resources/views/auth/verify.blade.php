@@ -37,13 +37,13 @@
                     Resend Email
                 </button>
                 {{-- TODO: Redirect to Home --}}
-                <a href=""
+                <a href="{{ route('home') }}"
                     class="flex items-center justify-center w-full sm:w-40 py-3 border border-emerald-500 shadow-sm text-sm font-medium rounded-md text-emerald-500 bg-transparent hover:bg-white-trans focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500">
                     Back to Home
                 </a>
             </div>
             {{-- TODO: Provide resend email verification action --}}
-            <form id="resend-verification-form" method="POST" action=""
+            <form id="resend-verification-form" method="POST" action="{{ route('resend.verification') }}"
                 class="hidden">
                 @csrf
             </form>

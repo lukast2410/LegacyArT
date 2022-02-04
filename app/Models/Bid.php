@@ -8,8 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Bid extends Model
 {
+    // TODO: Configure Soft Delete
     use HasFactory;
     
     public $timestamps = true;
-    protected $fillable = [];
+    protected $fillable = [
+        'user_id', 'art_id', 'amount', 'fee', 'status'
+    ];
+
+    // Add Eloquent if you want
 }

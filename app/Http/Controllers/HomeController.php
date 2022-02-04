@@ -24,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // TODO: Get the necessary data and redirect to home
+        // TODO: Get the necessary data and pass to the view
+
+        return view('home');
     }
 }

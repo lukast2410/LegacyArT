@@ -6,7 +6,7 @@
             class="mb-6 w-full max-w-screen-2xl mx-auto flex sm:space-x-2  items-start sm:items-center flex-col-reverse sm:flex-row">
             <div class="flex space-x-2 flex-1 w-full sm:w-min">
                 {{-- TODO: Redirect to Buy Transaction History Page --}}
-                <a href=""
+                <a href="{{ route('transaction.history') }}"
                     class="flex flex-1 sm:flex-none items-center justify-center space-x-2 px-4 py-3 cursor-pointer border-b-4 border-gray-200 hover:border-gray-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -39,7 +39,7 @@
                         There are no transaction yet
                     </h1>
                     {{-- TODO: Redirect to home --}}
-                    <a href=""
+                    <a href="{{ route('home') }}"
                         class="text-emerald-600 text-sm sm:text-base font-medium hover:text-emerald-700">
                         Let's buy some NFTs.
                     </a>

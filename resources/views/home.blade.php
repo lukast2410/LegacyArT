@@ -19,7 +19,7 @@
                         Created by
                     </h3>
                     {{-- TODO: Redirect to Creator Profile Page --}}
-                    <a href=""
+                    <a href="{{ route('user.profile', '@ nickname') }}"
                         class="block flex items-center p-2 bg-emerald-100 rounded-full shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
                         <div class="h-8 w-8 rounded-full overflow-hidden bg-gray-50">
                             {{-- TODO: If user from google, get profile image from the url --}}
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 {{-- TODO: Redirect to Art Detail Page --}}
-                <a href=""
+                <a href="{{ route('art.detail', 'art id') }}"
                     class="inline-flex justify-center items-center w-full lg:max-w-sm px-6 py-3 border border-transparent text-lg font-medium rounded-lg shadow-sm text-white transition-all bg-emerald-800 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none">
                     View Artwork
                 </a>
@@ -77,7 +77,7 @@
             </h1>
             <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-8 my-12">
                 {{-- TODO: Show list of creators, redirect to Creator Profile Page when clicked --}}
-                    <a href=""
+                    <a href="{{ route('user.profile', '@ nickname') }}"
                         class="block relative bg-white rounded-lg overflow-hidden shadow hover:shadow-lg hover:-translate-y-0.5 transition-all">
                         {{-- TODO: If user from google, get profile image from the url --}}
                         <img src="" alt="Creator Profile from Google" class="h-full w-full object-cover object-center">
